@@ -8,7 +8,7 @@
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.devMode" value="true" />
 
-	<package name="default" extends="struts-default" namespace="/pronos-foot">
+	<package name="default" extends="struts-default" namespace="/">
 
 		<default-action-ref name="index" />
 

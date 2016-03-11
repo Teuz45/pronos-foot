@@ -1,12 +1,19 @@
 package fr.cso.models.beans;
 
-public class Equipe {
-	private String cdEquipe;
+import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="equipes")
+@NamedQuery(name="equipes.findAll", query="SELECT e FROM Equipes e")
+public class Equipe implements Serializable {
+	private static final long serialVersionUID = 1L;
+	private String cdEquipe;
 	private String nom;
-	
 	private int coeffUEFA;
-	
 	private String logo;
 	
 	public Equipe(String cdEquipe) {

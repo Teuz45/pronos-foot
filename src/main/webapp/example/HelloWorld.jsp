@@ -10,5 +10,10 @@
 <body>
 <h2><s:property value="message"/></h2>
 <a href="/pronos-foot/">Back to Index page</a>
+
+<s:iterator value="listEquipes" status="equipeStatus">
+	<s:property value="nom" />
+</s:iterator>
+
 </body>
 </html>

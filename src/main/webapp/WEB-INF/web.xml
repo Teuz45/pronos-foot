@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE web-app PUBLIC
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
@@ -14,6 +15,17 @@
 		<filter-name>struts2</filter-name>
 		<url-pattern>*.action</url-pattern>
 	</filter-mapping>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/SpringBeans.xml</param-value>
+  	</context-param>
+
+	<listener>
+	  <listener-class>
+	    org.springframework.web.context.ContextLoaderListener
+	  </listener-class>
+	</listener>
 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
