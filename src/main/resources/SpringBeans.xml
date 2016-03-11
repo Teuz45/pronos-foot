@@ -1,13 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
-	
-	<!-- Database Configuration -->
-<!-- 	<import resource="config/spring/DataSource.xml"/> -->
-<!-- 	<import resource="config/spring/HibernateSessionFactory.xml"/> -->
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
  
-	<!-- Beans Declaration -->
-	<import resource="fr/cso/spring/EquipeBean.xml"/>
+ 	<bean id="helloWorld" class="fr.cso.actions.HelloWorld">
+		<property name="equipeBo" ref="equipeBo" />	
+	</bean>
+
+	<bean id="equipeBo" class="fr.cso.core.impl.EquipeBo" >
+		<property name="equipeDAO" ref="equipeDAO" />
+	</bean>
+	
+   	<bean id="equipeDAO" class="fr.cso.dao.impl.EquipeDAO" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+ 
+    <tx:annotation-driven />
+    
+    <bean id="transactionManager"
+        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+ 
+ 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+    	<property name="jndiName" value="java:comp/env/jdbc/pronos"/>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="fr.cso.models"/>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
  
 </beans>

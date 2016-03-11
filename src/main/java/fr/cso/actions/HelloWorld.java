@@ -16,16 +16,16 @@ public class HelloWorld extends ActionSupport {
 	private List<Equipe> listEquipes;
 	
 	public String execute() throws Exception {
-		setMessage(getText(MESSAGE));
 		return SUCCESS;
 	}
 
 	//list all customers
 	public String listEquipes() throws Exception{
 		
+		setMessage(getText(MESSAGE));
 		listEquipes = equipeBo.listEquipes();
 		
-		return "success";
+		return SUCCESS;
 	
 	}
 	

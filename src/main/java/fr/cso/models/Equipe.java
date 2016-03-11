@@ -18,7 +18,7 @@ public class Equipe implements Serializable {
 	@Id
 	private String cdEquipe;
 
-	private int coeffUEFA;
+	private Integer coeffUEFA;
 
 	private String logo;
 
@@ -51,11 +51,11 @@ public class Equipe implements Serializable {
 		this.cdEquipe = cdEquipe;
 	}
 
-	public int getCoeffUEFA() {
+	public Integer getCoeffUEFA() {
 		return this.coeffUEFA;
 	}
 
-	public void setCoeffUEFA(int coeffUEFA) {
+	public void setCoeffUEFA(Integer coeffUEFA) {
 		this.coeffUEFA = coeffUEFA;
 	}
 

@@ -9,10 +9,8 @@
 	</head>
 	<body>
 		<p>Struts 2 Tutorial</p>
-		<p>
-			<s:url action="helloWorld" >Test Struts 2</s:url> <br/>
-			<s:url action="/pronos-foot/HelloWorld.action" >Test Struts 2</s:url> <br/>
-			<a href="/pronos-foot/HelloWorld.action">Test Struts 2 Hello World example!!</a>
-		</p>
+		
+		<s:url action="helloWorld" var="myurl"/>
+		<a href='<s:property value="#myurl"/>'>Test Struts 2</a>
 	</body>
 </html>

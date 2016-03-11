@@ -13,7 +13,7 @@
 		<default-action-ref name="index" />
 
 		<action name="helloWorld" class="fr.cso.actions.HelloWorld" method="listEquipes">
-			<result>/example/HelloWorld.jsp</result>
+			<result>/jsp/HelloWorld.jsp</result>
 		</action>
 
 	</package>
