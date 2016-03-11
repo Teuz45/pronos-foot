@@ -5,7 +5,7 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.cso.core.IEquipeBo;
-import fr.cso.models.beans.Equipe;
+import fr.cso.models.Equipe;
 
 public class HelloWorld extends ActionSupport {
 

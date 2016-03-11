@@ -12,7 +12,7 @@
 
 		<default-action-ref name="index" />
 
-		<action name="HelloWorld" class="fr.cso.actions.HelloWorld">
+		<action name="helloWorld" class="fr.cso.actions.HelloWorld" method="listEquipes">
 			<result>/example/HelloWorld.jsp</result>
 		</action>
 

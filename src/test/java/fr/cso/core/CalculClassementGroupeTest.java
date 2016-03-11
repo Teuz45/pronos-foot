@@ -6,24 +6,42 @@ import java.util.List;
 import org.junit.Test;
 
 import fr.cso.models.beans.ClassementEquipe;
-import fr.cso.models.beans.Equipe;
-import fr.cso.models.beans.Resultat;
+import fr.cso.models.Equipe;
+import fr.cso.models.Resultat;
 
 public class CalculClassementGroupeTest {
 
 	@Test
 	public void calculClassementGroupeTest() {
-		Equipe equipeFra = new Equipe("FRA");
+		Equipe equipeFra = new Equipe();
+		equipeFra.setCdEquipe("FRA");
 		equipeFra.setCoeffUEFA(10);
-		Equipe equipeIta = new Equipe("ITA");
+		Equipe equipeIta = new Equipe();
+		equipeIta.setCdEquipe("ITA");
 		equipeIta.setCoeffUEFA(5);
-		Equipe equipeAll = new Equipe("ALL");
+		Equipe equipeAll = new Equipe();
+		equipeAll.setCdEquipe("ALL");
 		equipeAll.setCoeffUEFA(6);
 		
 		List<Resultat> listeResultatsGroupe = new ArrayList<Resultat>();
-		listeResultatsGroupe.add(new Resultat(equipeFra, equipeIta, 3, 1, null, null));
-		listeResultatsGroupe.add(new Resultat(equipeAll, equipeFra, 0, 2, null, null));
-		listeResultatsGroupe.add(new Resultat(equipeAll, equipeIta, 1, 1, null, null));
+		Resultat resultat1 = new Resultat();
+		resultat1.setEquipeDom(equipeFra);
+		resultat1.setEquipeExt(equipeIta);
+		resultat1.setScoreDom(3);
+		resultat1.setScoreExt(1);
+		listeResultatsGroupe.add(resultat1);
+		Resultat resultat2 = new Resultat();
+		resultat2.setEquipeDom(equipeAll);
+		resultat2.setEquipeExt(equipeFra);
+		resultat2.setScoreDom(0);
+		resultat2.setScoreExt(2);
+		listeResultatsGroupe.add(resultat2);
+		Resultat resultat3 = new Resultat();
+		resultat3.setEquipeDom(equipeAll);
+		resultat3.setEquipeExt(equipeIta);
+		resultat3.setScoreDom(1);
+		resultat3.setScoreExt(1);
+		listeResultatsGroupe.add(resultat3);
 		
 		List<ClassementEquipe> mapClassementGroupe = CalculClassementGroupe.getClassementGroupe(listeResultatsGroupe);
 	}

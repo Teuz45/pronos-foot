@@ -15,8 +15,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import fr.cso.models.beans.ClassementEquipe;
-import fr.cso.models.beans.Equipe;
-import fr.cso.models.beans.Resultat;
+import fr.cso.models.Equipe;
+import fr.cso.models.Resultat;
 
 public class CalculClassementGroupe {
 
