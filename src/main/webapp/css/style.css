@@ -1,5 +1,16 @@
 @CHARSET "ISO-8859-1";
 
+@font-face {
+	font-family: "pf beau sans pro"; 
+	src: url('../font/pfbeausanspro-light-webfont.ttf'); 
+}
+
+body{
+	min-width: 1200px;
+}
+
+/* HEADER */
+
 .navigation {
 	background-image: radial-gradient(circle farthest-corner at top center, #2c6a93, #000a34);
 	position: relative;
@@ -65,7 +76,7 @@
 .navigation .competition-aside .prochainEvenement {
 	color: #FFFFFF;
 	font-weight: bold;
-	font-size: 12px;
+	font-size: 10px;
 	font-family:"pf beau sans pro",Helvetica,Arial,sans-serif;
 	text-align: center;
 }
@@ -100,7 +111,7 @@
 }
 
 .navigation .competition-aside .countdown #temps {
-	color: #FF9900;
+	color: #feba3d;
 	font-weight: bold;
 	font-size: 35px;
 }
@@ -112,8 +123,82 @@
 	text-align: right;
 }
 
-.menu {
+.navigation .menu {
 	height: 30px; 
+	position: relative;
+	z-index: 3;
+	display: block;
 	padding-top: 20px; 
 	padding-bottom: 20px;
+}
+
+.navigation .menu .menu-container {
+	padding-left: 30%;
+    padding-right: 30%;
+    text-align: center;
+}
+
+.navigation .menu .menu-container .menu-navbar {
+	display: flex;
+	height: auto;
+    padding: 0;
+    margin : 0;
+}
+
+.navigation .menu .menu-container .menu-navbar li {
+	list-style-type: none;
+}
+
+.navigation .menu .menu-container .menu-navbar .first-item {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.navigation .menu .menu-container .menu-navbar .menu-navbar-item {
+	flex-grow: 2;
+    display: block;
+}
+
+.navigation .menu .menu-container .menu-navbar .menu-navbar-item-link {
+	line-height: 1;
+    padding: 6px 8px;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    color: #FFF;
+    font-size: 16px; 
+    font-family: 'pf beau sans pro', Helvetica, Arial, sans-serif;
+    text-decoration: none;
+	font-style: normal;
+	font-weight: bold;
+}
+
+.navigation .menu .menu-container .menu-navbar .menu-navbar-item-link-active,
+.navigation .menu .menu-container .menu-navbar .menu-navbar-item-link:hover {
+	background-color: #65beec;
+	border-radius: 3px;
+}
+
+.navigation .menu .menu-container .menu-navbar .last-item {
+    flex-grow: 1;
+    text-align: right;
+}
+
+/* CONTENT */
+
+.content {
+	width: 1200px;
+    margin: 0px auto;
+    padding-top : 10px;
+}
+
+.content-left {
+    float:left;
+}
+
+.content-right {
+	float:right;
+	width: 380px;
+    margin-left : 20px;
+    border : 1px solid black;
 }

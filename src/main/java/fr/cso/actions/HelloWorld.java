@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import fr.cso.core.IEquipeBo;
 import fr.cso.models.Equipe;
 import fr.cso.models.Match;
+import fr.cso.models.Phas;
 import fr.cso.models.Resultat;
 
 public class HelloWorld extends ActionSupport {
@@ -32,11 +33,12 @@ public class HelloWorld extends ActionSupport {
 		
 		setMessage(getText(MESSAGE));
 		
-		libelleProchainEvenement = "Début de la compétition".toUpperCase();
+		
 		
 		dateProchainEvenement = 1465585200L;
 		
 		prochainMatch = new Match();
+		prochainMatch.setNumMatch(2);
 		Resultat resultat = new Resultat();
 		Equipe equipeDom = new Equipe();
 		equipeDom.setCdEquipe("FRA");
@@ -46,7 +48,25 @@ public class HelloWorld extends ActionSupport {
 		equipeExt.setCdEquipe("ROM");
 		equipeExt.setLogo("images/flags/rou.png");
 		resultat.setEquipeExt(equipeExt);
+		Phas phase = new Phas();
+		phase.setCdPhase("GROUPES");
+		phase.setLibelle("Groupe");
+		prochainMatch.setPhas(phase);
+		prochainMatch.setGroupe("A");
 		prochainMatch.setResultat(resultat);
+		
+		if(prochainMatch.getNumMatch()==1) {
+			libelleProchainEvenement = "Début de la compétition".toUpperCase();
+		}
+		else {
+			Phas phaseProchainMatch = prochainMatch.getPhas();
+			if(phaseProchainMatch.getCdPhase()=="GROUPES") {
+				libelleProchainEvenement = phaseProchainMatch.getLibelle() + " " + prochainMatch.getGroupe();
+			}
+			else {
+				libelleProchainEvenement = phaseProchainMatch.getLibelle();
+			}
+		}
 		
 		listEquipes = equipeBo.listEquipes();
 		
