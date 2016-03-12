@@ -12,5 +12,8 @@
 		
 		<s:url action="helloWorld" var="myurl"/>
 		<a href='<s:property value="#myurl"/>'>Test Struts 2</a>
+		
+		<s:url action="resultats" var="urlResultats"/>
+		<a href='<s:property value="#urlResultats"/>'>Résultats</a>
 	</body>
 </html>

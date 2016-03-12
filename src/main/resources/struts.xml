@@ -16,6 +16,10 @@
 			<result>/jsp/HelloWorld.jsp</result>
 		</action>
 
+		<action name="resultats" class="fr.cso.actions.HelloWorld" method="listEquipes">
+			<result>/jsp/Resultats.jsp</result>
+		</action>
+
 	</package>
 
 </struts>
