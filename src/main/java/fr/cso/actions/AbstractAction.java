@@ -53,7 +53,7 @@ public class AbstractAction extends ActionSupport {
 		}
 		
 		utilisateur = new User();
-		utilisateur.setProfil("ADMIN");
+		utilisateur.setProfil("USER");
 	}
 
 	public String getLibelleProchainEvenement() {

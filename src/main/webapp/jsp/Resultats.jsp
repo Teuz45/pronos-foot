@@ -76,9 +76,60 @@
 					</s:iterator>
 				</div>
 				<div class="content-right">
-					<s:iterator value="classementGroupe" status="matchStatus" var="match">
-						<s:property value="ranking"/> <s:property value="nomEquipe"/> <s:property value="nbPoints"/> <br/>
-					</s:iterator>
+					<h2 class="portlet-title">Groupe A</h2>
+					<table class="classement">
+						<thead>
+							<tr>
+								<th class="title"><abbr class="standings-abbr" title="Rang">Rg</abbr> </th>
+								<th class="title-equipe">Equipe</th>
+								<th class="title"><abbr class="standings-abbr" title="Joué(s)">J</abbr></th>
+								<th class="title"><abbr class="standings-abbr" title="Victoires">V</abbr></th>
+								<th class="title"><abbr class="standings-abbr" title="Matches nuls">N</abbr></th>
+								<th class="title"><abbr class="standings-abbr" title="Défaites">D</abbr></th>
+								<th class="title"><abbr class="standings-abbr" title="Buts pour">bp</abbr></th>
+								<th class="title"><abbr class="standings-abbr" title="Contre">bc</abbr></th>
+								<th class="title"><abbr class="standings-abbr" title="Différence de buts">+/-</abbr></th>
+								<th class="title"><abbr class="standings-abbr" title="Points">pts</abbr></th>
+							</tr>
+						</thead>
+						<tbody>
+							<s:iterator value="classementGroupe" status="matchStatus" var="match">
+								<tr class="<s:if test="#matchStatus.index %2 == 0">data-ligne-paire</s:if><s:else>data-ligne-impaire</s:else>">
+									<td class="data">
+										<s:property value="ranking"/>
+									</td>
+									<td class="data-equipe">
+										<s:property value="nomEquipe"/>
+									</td>
+									<td class="data">
+										<s:property value="nbMatchsJoues"/>
+									</td>
+									<td class="data">
+										<s:property value="nbVictoires"/>
+									</td>
+									<td class="data">
+										<s:property value="nbNuls"/>
+									</td>
+									<td class="data">
+										<s:property value="nbDefaites"/>
+									</td>
+									<td class="data">
+										<s:property value="nbButsPour"/>
+									</td>
+									<td class="data">
+										<s:property value="nbButsContre"/>
+									</td>
+									<td class="data">
+										<s:property value="differenceButs"/>
+									</td>
+									<td class="data-points">
+										<s:property value="nbPoints"/>
+									</td>
+								</tr> 
+								</s:iterator>
+							</tbody>
+						</table>
+					
 				</div>
 				<div style="clear: both;"></div>
 			</form>
