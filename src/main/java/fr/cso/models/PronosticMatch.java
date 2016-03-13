@@ -10,8 +10,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="pronosticsmatchs")
-@NamedQuery(name="Pronosticsmatch.findAll", query="SELECT p FROM Pronosticsmatch p")
-public class Pronosticsmatch implements Serializable {
+@NamedQuery(name="PronosticMatch.findAll", query="SELECT p FROM PronosticMatch p")
+public class PronosticMatch implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -47,7 +47,7 @@ public class Pronosticsmatch implements Serializable {
 	@JoinColumn(name="user")
 	private User userBean;
 
-	public Pronosticsmatch() {
+	public PronosticMatch() {
 	}
 
 	public int getIdPronosticMatch() {

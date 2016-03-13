@@ -30,9 +30,9 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="userBean")
 	private List<Bonus> bonuses;
 
-	//bi-directional many-to-one association to Pronosticsmatch
+	//bi-directional many-to-one association to PronosticMatch
 	@OneToMany(mappedBy="userBean")
-	private List<Pronosticsmatch> pronosticsmatchs;
+	private List<PronosticMatch> pronosticsmatchs;
 
 	public User() {
 	}
@@ -99,22 +99,22 @@ public class User implements Serializable {
 		return bonus;
 	}
 
-	public List<Pronosticsmatch> getPronosticsmatchs() {
+	public List<PronosticMatch> getPronosticsmatchs() {
 		return this.pronosticsmatchs;
 	}
 
-	public void setPronosticsmatchs(List<Pronosticsmatch> pronosticsmatchs) {
+	public void setPronosticsmatchs(List<PronosticMatch> pronosticsmatchs) {
 		this.pronosticsmatchs = pronosticsmatchs;
 	}
 
-	public Pronosticsmatch addPronosticsmatch(Pronosticsmatch pronosticsmatch) {
+	public PronosticMatch addPronosticsmatch(PronosticMatch pronosticsmatch) {
 		getPronosticsmatchs().add(pronosticsmatch);
 		pronosticsmatch.setUserBean(this);
 
 		return pronosticsmatch;
 	}
 
-	public Pronosticsmatch removePronosticsmatch(Pronosticsmatch pronosticsmatch) {
+	public PronosticMatch removePronosticsmatch(PronosticMatch pronosticsmatch) {
 		getPronosticsmatchs().remove(pronosticsmatch);
 		pronosticsmatch.setUserBean(null);
 

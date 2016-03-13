@@ -10,8 +10,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="baremespoints")
-@NamedQuery(name="Baremespoint.findAll", query="SELECT b FROM Baremespoint b")
-public class Baremespoint implements Serializable {
+@NamedQuery(name="BaremePoint.findAll", query="SELECT b FROM BaremePoint b")
+public class BaremePoint implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -19,7 +19,7 @@ public class Baremespoint implements Serializable {
 
 	private int nbPoints;
 
-	public Baremespoint() {
+	public BaremePoint() {
 	}
 
 	public String getCdBareme() {

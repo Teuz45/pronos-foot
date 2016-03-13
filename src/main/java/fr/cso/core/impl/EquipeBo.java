@@ -14,8 +14,8 @@ public class EquipeBo implements IEquipeBo {
 	
 	@Override
 	@Transactional(readOnly=true)
-	public List<Equipe> listEquipes() {
-		return equipeDAO.listEquipes();
+	public List<Equipe> listeEquipes() {
+		return equipeDAO.listeEquipes();
 	}
 
 	public void setEquipeDAO(IEquipeDAO equipeDAO) {

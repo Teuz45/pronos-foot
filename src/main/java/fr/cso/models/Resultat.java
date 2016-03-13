@@ -17,13 +17,13 @@ public class Resultat implements Serializable {
 	@Id
 	private int idMatch;
 
-	private int scoreDom;
+	private Integer scoreDom;
 
-	private int scoreExt;
+	private Integer scoreExt;
 
-	private int scorePenDom;
+	private Integer scorePenDom;
 
-	private int scorePenExt;
+	private Integer scorePenExt;
 
 	//bi-directional many-to-one association to Equipe
 	@ManyToOne
@@ -51,35 +51,35 @@ public class Resultat implements Serializable {
 		this.idMatch = idMatch;
 	}
 
-	public int getScoreDom() {
+	public Integer getScoreDom() {
 		return this.scoreDom;
 	}
 
-	public void setScoreDom(int scoreDom) {
+	public void setScoreDom(Integer scoreDom) {
 		this.scoreDom = scoreDom;
 	}
 
-	public int getScoreExt() {
+	public Integer getScoreExt() {
 		return this.scoreExt;
 	}
 
-	public void setScoreExt(int scoreExt) {
+	public void setScoreExt(Integer scoreExt) {
 		this.scoreExt = scoreExt;
 	}
 
-	public int getScorePenDom() {
+	public Integer getScorePenDom() {
 		return this.scorePenDom;
 	}
 
-	public void setScorePenDom(int scorePenDom) {
+	public void setScorePenDom(Integer scorePenDom) {
 		this.scorePenDom = scorePenDom;
 	}
 
-	public int getScorePenExt() {
+	public Integer getScorePenExt() {
 		return this.scorePenExt;
 	}
 
-	public void setScorePenExt(int scorePenExt) {
+	public void setScorePenExt(Integer scorePenExt) {
 		this.scorePenExt = scorePenExt;
 	}
 

@@ -269,7 +269,7 @@ public class CalculClassementGroupe {
 		return mapClassementEquipesAEgalite;
 	}
 	
-	public static Map<Equipe, ClassementEquipe> calculDetailsEquipeParMatch(List<Resultat> listeResultatsMatch) {
+	private static Map<Equipe, ClassementEquipe> calculDetailsEquipeParMatch(List<Resultat> listeResultatsMatch) {
 		Map<Equipe, ClassementEquipe> mapClassementPoule = new HashMap<Equipe, ClassementEquipe>();		
 		
 		for(Resultat resultatMatch : listeResultatsMatch) {
@@ -277,7 +277,7 @@ public class CalculClassementGroupe {
 			// Initialisation Dom
 			Equipe equipeDom = resultatMatch.getEquipeDom();
 			if(!mapClassementPoule.containsKey(equipeDom)) {
-				mapClassementPoule.put(equipeDom, new ClassementEquipe(equipeDom.getCdEquipe()));
+				mapClassementPoule.put(equipeDom, new ClassementEquipe(equipeDom.getNom()));
 			}
 			ClassementEquipe classementEquipeDom = mapClassementPoule.get(equipeDom);
 			Integer scoreDom = resultatMatch.getScoreDom();
@@ -285,7 +285,7 @@ public class CalculClassementGroupe {
 			// Initialisation Ext
 			Equipe equipeExt = resultatMatch.getEquipeExt();
 			if(!mapClassementPoule.containsKey(equipeExt)) {
-				mapClassementPoule.put(equipeExt, new ClassementEquipe(equipeExt.getCdEquipe()));
+				mapClassementPoule.put(equipeExt, new ClassementEquipe(equipeExt.getNom()));
 			}
 			ClassementEquipe classementEquipeExt = mapClassementPoule.get(equipeExt);
 			Integer scoreExt = resultatMatch.getScoreExt();

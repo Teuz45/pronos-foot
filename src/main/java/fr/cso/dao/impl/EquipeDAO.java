@@ -9,7 +9,7 @@ import fr.cso.models.Equipe;
 public class EquipeDAO extends HibernateDaoSupport implements IEquipeDAO {
 	
 	@Override
-	public List<Equipe> listEquipes() {
+	public List<Equipe> listeEquipes() {
 		return getHibernateTemplate().getSessionFactory().getCurrentSession().getNamedQuery("Equipe.findAll").list();
 	}
 	

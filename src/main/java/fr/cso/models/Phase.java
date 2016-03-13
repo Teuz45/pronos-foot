@@ -11,8 +11,8 @@ import java.util.List;
  */
 @Entity
 @Table(name="phases")
-@NamedQuery(name="Phas.findAll", query="SELECT p FROM Phas p")
-public class Phas implements Serializable {
+@NamedQuery(name="Phase.findAll", query="SELECT p FROM Phase p")
+public class Phase implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -21,10 +21,10 @@ public class Phas implements Serializable {
 	private String libelle;
 
 	//bi-directional many-to-one association to Match
-	@OneToMany(mappedBy="phas")
+	@OneToMany(mappedBy="phase")
 	private List<Match> matchs;
 
-	public Phas() {
+	public Phase() {
 	}
 
 	public String getCdPhase() {
@@ -53,14 +53,14 @@ public class Phas implements Serializable {
 
 	public Match addMatch(Match match) {
 		getMatchs().add(match);
-		match.setPhas(this);
+		match.setPhase(this);
 
 		return match;
 	}
 
 	public Match removeMatch(Match match) {
 		getMatchs().remove(match);
-		match.setPhas(null);
+		match.setPhase(null);
 
 		return match;
 	}

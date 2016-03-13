@@ -1,18 +1,11 @@
 package fr.cso.actions;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-
-import com.opensymphony.xwork2.ActionSupport;
 
 import fr.cso.core.IEquipeBo;
 import fr.cso.models.Equipe;
-import fr.cso.models.Match;
-import fr.cso.models.Phas;
-import fr.cso.models.Resultat;
 
-public class HelloWorld extends ActionSupport {
+public class HelloWorld extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,55 +13,19 @@ public class HelloWorld extends ActionSupport {
 	
 	private List<Equipe> listEquipes;
 	private String message;
-	private String libelleProchainEvenement;
-	private long dateProchainEvenement;
-	private Match prochainMatch;
+
 	
 	public String execute() throws Exception {
 		return SUCCESS;
 	}
 
 	//list all customers
-	public String listEquipes() throws Exception{
+	public String listeEquipes() throws Exception{
+		init();
 		
 		setMessage(getText(MESSAGE));
 		
-		
-		
-		dateProchainEvenement = 1465585200L;
-		
-		prochainMatch = new Match();
-		prochainMatch.setNumMatch(2);
-		Resultat resultat = new Resultat();
-		Equipe equipeDom = new Equipe();
-		equipeDom.setCdEquipe("FRA");
-		equipeDom.setLogo("images/flags/fra.png");
-		resultat.setEquipeDom(equipeDom);
-		Equipe equipeExt = new Equipe();
-		equipeExt.setCdEquipe("ROM");
-		equipeExt.setLogo("images/flags/rou.png");
-		resultat.setEquipeExt(equipeExt);
-		Phas phase = new Phas();
-		phase.setCdPhase("GROUPES");
-		phase.setLibelle("Groupe");
-		prochainMatch.setPhas(phase);
-		prochainMatch.setGroupe("A");
-		prochainMatch.setResultat(resultat);
-		
-		if(prochainMatch.getNumMatch()==1) {
-			libelleProchainEvenement = "Début de la compétition".toUpperCase();
-		}
-		else {
-			Phas phaseProchainMatch = prochainMatch.getPhas();
-			if(phaseProchainMatch.getCdPhase()=="GROUPES") {
-				libelleProchainEvenement = phaseProchainMatch.getLibelle() + " " + prochainMatch.getGroupe();
-			}
-			else {
-				libelleProchainEvenement = phaseProchainMatch.getLibelle();
-			}
-		}
-		
-		listEquipes = equipeBo.listEquipes();
+		listEquipes = equipeBo.listeEquipes();
 		
 		return SUCCESS;
 	
@@ -95,34 +52,5 @@ public class HelloWorld extends ActionSupport {
 	public void setEquipeBo(IEquipeBo equipeBo) {
 		this.equipeBo = equipeBo;
 	}
-
-	public String getLibelleProchainEvenement() {
-		return libelleProchainEvenement;
-	}
-
-	public void setLibelleProchainEvenement(String libelleProchainEvenement) {
-		this.libelleProchainEvenement = libelleProchainEvenement;
-	}
-
-	public Long getDateProchainEvenement() {
-		return dateProchainEvenement;
-	}
-
-	public void setDateProchainEvenement(Long dateProchainEvenement) {
-		this.dateProchainEvenement = dateProchainEvenement;
-	}
-
-	public Match getProchainMatch() {
-		return prochainMatch;
-	}
-
-	public void setProchainMatch(Match prochainMatch) {
-		this.prochainMatch = prochainMatch;
-	}
-
-	public void setDateProchainEvenement(long dateProchainEvenement) {
-		this.dateProchainEvenement = dateProchainEvenement;
-	}
-	
 	
 }

@@ -10,14 +10,33 @@
  	<bean id="helloWorld" class="fr.cso.actions.HelloWorld">
 		<property name="equipeBo" ref="equipeBo" />	
 	</bean>
+	<bean id="resultatsAction" class="fr.cso.actions.ResultatsAction">
+		<property name="resultatBo" ref="resultatBo" />	
+		<property name="matchBo" ref="matchBo" />	
+	</bean>
+	
 
 	<bean id="equipeBo" class="fr.cso.core.impl.EquipeBo" >
 		<property name="equipeDAO" ref="equipeDAO" />
 	</bean>
+	<bean id="resultatBo" class="fr.cso.core.impl.ResultatBo" >
+		<property name="resultatDAO" ref="resultatDAO" />
+	</bean>
+	<bean id="matchBo" class="fr.cso.core.impl.MatchBo" >
+		<property name="matchDAO" ref="matchDAO" />
+	</bean>
+	
 	
    	<bean id="equipeDAO" class="fr.cso.dao.impl.EquipeDAO" >
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+   	<bean id="resultatDAO" class="fr.cso.dao.impl.ResultatDAO" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="matchDAO" class="fr.cso.dao.impl.MatchDAO" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
  
     <tx:annotation-driven />
     

@@ -24,19 +24,19 @@ public class Match implements Serializable {
 
 	private String groupe;
 
-	//bi-directional many-to-one association to Phas
+	//bi-directional many-to-one association to Phase
 	@ManyToOne
 	@JoinColumn(name="phase")
-	private Phas phas;
+	private Phase phase;
 
 	//bi-directional many-to-one association to Stade
 	@ManyToOne
 	@JoinColumn(name="localisation")
 	private Stade stade;
 
-	//bi-directional many-to-one association to Pronosticsmatch
+	//bi-directional many-to-one association to PronosticMatch
 	@OneToMany(mappedBy="matchBean")
-	private List<Pronosticsmatch> pronosticsmatchs;
+	private List<PronosticMatch> pronosticsmatchs;
 
 	//bi-directional one-to-one association to Resultat
 	@OneToOne(mappedBy="match")
@@ -69,12 +69,12 @@ public class Match implements Serializable {
 		this.groupe = groupe;
 	}
 
-	public Phas getPhas() {
-		return this.phas;
+	public Phase getPhase() {
+		return this.phase;
 	}
 
-	public void setPhas(Phas phas) {
-		this.phas = phas;
+	public void setPhase(Phase phase) {
+		this.phase = phase;
 	}
 
 	public Stade getStade() {
@@ -85,22 +85,22 @@ public class Match implements Serializable {
 		this.stade = stade;
 	}
 
-	public List<Pronosticsmatch> getPronosticsmatchs() {
+	public List<PronosticMatch> getPronosticsmatchs() {
 		return this.pronosticsmatchs;
 	}
 
-	public void setPronosticsmatchs(List<Pronosticsmatch> pronosticsmatchs) {
+	public void setPronosticsmatchs(List<PronosticMatch> pronosticsmatchs) {
 		this.pronosticsmatchs = pronosticsmatchs;
 	}
 
-	public Pronosticsmatch addPronosticsmatch(Pronosticsmatch pronosticsmatch) {
+	public PronosticMatch addPronosticsmatch(PronosticMatch pronosticsmatch) {
 		getPronosticsmatchs().add(pronosticsmatch);
 		pronosticsmatch.setMatchBean(this);
 
 		return pronosticsmatch;
 	}
 
-	public Pronosticsmatch removePronosticsmatch(Pronosticsmatch pronosticsmatch) {
+	public PronosticMatch removePronosticsmatch(PronosticMatch pronosticsmatch) {
 		getPronosticsmatchs().remove(pronosticsmatch);
 		pronosticsmatch.setMatchBean(null);
 

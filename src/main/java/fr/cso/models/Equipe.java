@@ -18,27 +18,27 @@ public class Equipe implements Serializable {
 	@Id
 	private String cdEquipe;
 
-	private Integer coeffUEFA;
+	private int coeffUEFA;
 
 	private String logo;
 
 	private String nom;
 
-	//bi-directional many-to-one association to Pronosticsmatch
+	//bi-directional many-to-one association to PronosticMatch
 	@OneToMany(mappedBy="equipeExt")
-	private List<Pronosticsmatch> pronosticsmatchs1;
+	private List<PronosticMatch> pronosticsmatchsext;
 
-	//bi-directional many-to-one association to Pronosticsmatch
+	//bi-directional many-to-one association to PronosticMatch
 	@OneToMany(mappedBy="equipeDom")
-	private List<Pronosticsmatch> pronosticsmatchs2;
+	private List<PronosticMatch> pronosticsmatchsdom;
 
 	//bi-directional many-to-one association to Resultat
 	@OneToMany(mappedBy="equipeExt")
-	private List<Resultat> resultats1;
+	private List<Resultat> resultatsExt;
 
 	//bi-directional many-to-one association to Resultat
 	@OneToMany(mappedBy="equipeDom")
-	private List<Resultat> resultats2;
+	private List<Resultat> resultatsDom;
 
 	public Equipe() {
 	}
@@ -51,11 +51,11 @@ public class Equipe implements Serializable {
 		this.cdEquipe = cdEquipe;
 	}
 
-	public Integer getCoeffUEFA() {
+	public int getCoeffUEFA() {
 		return this.coeffUEFA;
 	}
 
-	public void setCoeffUEFA(Integer coeffUEFA) {
+	public void setCoeffUEFA(int coeffUEFA) {
 		this.coeffUEFA = coeffUEFA;
 	}
 
@@ -75,92 +75,92 @@ public class Equipe implements Serializable {
 		this.nom = nom;
 	}
 
-	public List<Pronosticsmatch> getPronosticsmatchs1() {
-		return this.pronosticsmatchs1;
+	public List<PronosticMatch> getPronosticsmatchsext() {
+		return this.pronosticsmatchsext;
 	}
 
-	public void setPronosticsmatchs1(List<Pronosticsmatch> pronosticsmatchs1) {
-		this.pronosticsmatchs1 = pronosticsmatchs1;
+	public void setPronosticsmatchsext(List<PronosticMatch> pronosticsmatchsext) {
+		this.pronosticsmatchsext = pronosticsmatchsext;
 	}
 
-	public Pronosticsmatch addPronosticsmatchs1(Pronosticsmatch pronosticsmatchs1) {
-		getPronosticsmatchs1().add(pronosticsmatchs1);
-		pronosticsmatchs1.setEquipeExt(this);
+	public PronosticMatch addPronosticsmatchsext(PronosticMatch pronosticsmatchsext) {
+		getPronosticsmatchsext().add(pronosticsmatchsext);
+		pronosticsmatchsext.setEquipeExt(this);
 
-		return pronosticsmatchs1;
+		return pronosticsmatchsext;
 	}
 
-	public Pronosticsmatch removePronosticsmatchs1(Pronosticsmatch pronosticsmatchs1) {
-		getPronosticsmatchs1().remove(pronosticsmatchs1);
-		pronosticsmatchs1.setEquipeExt(null);
+	public PronosticMatch removePronosticsmatchsext(PronosticMatch pronosticsmatchsext) {
+		getPronosticsmatchsext().remove(pronosticsmatchsext);
+		pronosticsmatchsext.setEquipeExt(null);
 
-		return pronosticsmatchs1;
+		return pronosticsmatchsext;
 	}
 
-	public List<Pronosticsmatch> getPronosticsmatchs2() {
-		return this.pronosticsmatchs2;
+	public List<PronosticMatch> getPronosticsmatchsdom() {
+		return this.pronosticsmatchsdom;
 	}
 
-	public void setPronosticsmatchs2(List<Pronosticsmatch> pronosticsmatchs2) {
-		this.pronosticsmatchs2 = pronosticsmatchs2;
+	public void setPronosticsmatchsdom(List<PronosticMatch> pronosticsmatchsdom) {
+		this.pronosticsmatchsdom = pronosticsmatchsdom;
 	}
 
-	public Pronosticsmatch addPronosticsmatchs2(Pronosticsmatch pronosticsmatchs2) {
-		getPronosticsmatchs2().add(pronosticsmatchs2);
-		pronosticsmatchs2.setEquipeDom(this);
+	public PronosticMatch addPronosticsmatchsdom(PronosticMatch pronosticsmatchsdom) {
+		getPronosticsmatchsdom().add(pronosticsmatchsdom);
+		pronosticsmatchsdom.setEquipeDom(this);
 
-		return pronosticsmatchs2;
+		return pronosticsmatchsdom;
 	}
 
-	public Pronosticsmatch removePronosticsmatchs2(Pronosticsmatch pronosticsmatchs2) {
-		getPronosticsmatchs2().remove(pronosticsmatchs2);
-		pronosticsmatchs2.setEquipeDom(null);
+	public PronosticMatch removePronosticsmatchsdom(PronosticMatch pronosticsmatchsdom) {
+		getPronosticsmatchsdom().remove(pronosticsmatchsdom);
+		pronosticsmatchsdom.setEquipeDom(null);
 
-		return pronosticsmatchs2;
+		return pronosticsmatchsdom;
 	}
 
-	public List<Resultat> getResultats1() {
-		return this.resultats1;
+	public List<Resultat> getResultatsExt() {
+		return this.resultatsExt;
 	}
 
-	public void setResultats1(List<Resultat> resultats1) {
-		this.resultats1 = resultats1;
+	public void setResultatsExt(List<Resultat> resultatsExt) {
+		this.resultatsExt = resultatsExt;
 	}
 
-	public Resultat addResultats1(Resultat resultats1) {
-		getResultats1().add(resultats1);
-		resultats1.setEquipeExt(this);
+	public Resultat addResultatsExt(Resultat resultatsExt) {
+		getResultatsExt().add(resultatsExt);
+		resultatsExt.setEquipeExt(this);
 
-		return resultats1;
+		return resultatsExt;
 	}
 
-	public Resultat removeResultats1(Resultat resultats1) {
-		getResultats1().remove(resultats1);
-		resultats1.setEquipeExt(null);
+	public Resultat removeResultatsExt(Resultat resultatsExt) {
+		getResultatsExt().remove(resultatsExt);
+		resultatsExt.setEquipeExt(null);
 
-		return resultats1;
+		return resultatsExt;
 	}
 
-	public List<Resultat> getResultats2() {
-		return this.resultats2;
+	public List<Resultat> getResultatsDom() {
+		return this.resultatsDom;
 	}
 
-	public void setResultats2(List<Resultat> resultats2) {
-		this.resultats2 = resultats2;
+	public void setResultatsDom(List<Resultat> resultatsDom) {
+		this.resultatsDom = resultatsDom;
 	}
 
-	public Resultat addResultats2(Resultat resultats2) {
-		getResultats2().add(resultats2);
-		resultats2.setEquipeDom(this);
+	public Resultat addResultatsDom(Resultat resultatsDom) {
+		getResultatsDom().add(resultatsDom);
+		resultatsDom.setEquipeDom(this);
 
-		return resultats2;
+		return resultatsDom;
 	}
 
-	public Resultat removeResultats2(Resultat resultats2) {
-		getResultats2().remove(resultats2);
-		resultats2.setEquipeDom(null);
+	public Resultat removeResultatsDom(Resultat resultatsDom) {
+		getResultatsDom().remove(resultatsDom);
+		resultatsDom.setEquipeDom(null);
 
-		return resultats2;
+		return resultatsDom;
 	}
 
 }
