@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import fr.cso.dao.IMatchDAO;
-import fr.cso.models.Match;
+import fr.cso.model.Match;
 
 public class MatchDAO extends HibernateDaoSupport implements IMatchDAO {
 	

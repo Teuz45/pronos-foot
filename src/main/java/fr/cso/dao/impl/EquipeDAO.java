@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import fr.cso.dao.IEquipeDAO;
-import fr.cso.models.Equipe;
+import fr.cso.model.Equipe;
 
 public class EquipeDAO extends HibernateDaoSupport implements IEquipeDAO {
 	

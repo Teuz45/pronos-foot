@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.cso.core.IMatchManager;
 import fr.cso.dao.IMatchDAO;
-import fr.cso.models.Match;
+import fr.cso.model.Match;
 
 public class MatchManager implements IMatchManager {
 

@@ -12,13 +12,12 @@
 
 	<properties>
 	    <java-version>1.8</java-version>
-	    <org.springframework.version>4.2.5.RELEASE</org.springframework.version>
-	    <org.strutsframework-version>2.3.20</org.strutsframework-version>
-	    <mysql-connector-java-version>5.1.38</mysql-connector-java-version>
-	    <org.hibernate-version>4.3.11.Final</org.hibernate-version>
+	    <org.springframework-version>4.2.5.RELEASE</org.springframework-version>
+	    <org.strutsframework-version>2.3.24.1</org.strutsframework-version>
 	</properties>
 
 	<dependencies>
+	
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -32,94 +31,66 @@
 			<version>1.2.17</version>
 		</dependency>
 	
-	    <!-- Struts 2 -->
+		<!-- Dependencies for Spring Framework -->
 		<dependency>
-			<groupId>org.apache.struts</groupId>
-			<artifactId>struts2-core</artifactId>
-			<version>${org.strutsframework-version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework-version}</version>
 		</dependency>
+	
 		<dependency>
-			<groupId>org.apache.struts</groupId>
-			<artifactId>struts2-spring-plugin</artifactId>
-			<version>${org.strutsframework-version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
 		</dependency>
-		
-		<!-- Spring framework --> 
-	    <dependency>
-	      <groupId>org.springframework</groupId>
-	      <artifactId>spring-core</artifactId>
-	      <version>${org.springframework.version}</version>
-	    </dependency>
-	    <dependency>
-	        <groupId>org.springframework</groupId>
-	        <artifactId>spring-web</artifactId>
-	        <version>${org.springframework.version}</version>
-	    </dependency>
-	    <dependency>
-	      <groupId>org.springframework</groupId>
-	      <artifactId>spring-beans</artifactId>
-	      <version>${org.springframework.version}</version>
-	    </dependency>
-	    <dependency>
-	      <groupId>org.springframework</groupId>
-	      <artifactId>spring-context</artifactId>
-	      <version>${org.springframework.version}</version>
-	    </dependency>
-	    <dependency>
-	      <groupId>org.springframework</groupId>
-	      <artifactId>spring-aop</artifactId>
-	      <version>${org.springframework.version}</version>
-	    </dependency>
-	    <dependency>
-	        <groupId>org.aspectj</groupId>
-	        <artifactId>aspectjtools</artifactId>
-	        <version>1.6.2</version>
-	    </dependency>
-	    <dependency>
-			<groupId>aopalliance</groupId>
-			<artifactId>aopalliance</artifactId>
-			<version>1.0</version>
-		</dependency>
-	    <dependency>
-	        <groupId>cglib</groupId>
-	        <artifactId>cglib</artifactId>
-	        <version>3.1</version>
-	    </dependency>
-	    <dependency>
-	      <groupId>org.springframework</groupId>
-	      <artifactId>spring-tx</artifactId>
-	      <version>${org.springframework.version}</version>
-	    </dependency>
-	    <dependency>
-	      <groupId>org.springframework</groupId>
-	      <artifactId>spring-jdbc</artifactId>
-	      <version>${org.springframework.version}</version>
-	    </dependency>
-	    <dependency>
-	      <groupId>org.springframework</groupId>
-	      <artifactId>spring-orm</artifactId>
-	      <version>${org.springframework.version}</version>
-	    </dependency>
-			
-		<!-- MySQL database driver -->
+	
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql-connector-java-version}</version>
-		</dependency>
-		
-		<!-- Hibernate -->		
-		<dependency>
-		  <groupId>org.hibernate</groupId>
-		  <artifactId>hibernate-core</artifactId>
-		  <version>${org.hibernate-version}</version>
-		  <scope>compile</scope>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${org.springframework-version}</version>
+			<type>jar</type>
 		</dependency>
 		
 		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>persistence-api</artifactId>
-			<version>1.0</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>4.2.5.RELEASE</version>
+		</dependency>
+		
+		
+		<!-- Dependencies for Struts Framework -->
+		<dependency>
+		    <groupId>org.apache.struts</groupId>
+		    <artifactId>struts2-core</artifactId>
+		    <version>${org.strutsframework-version}</version>
+		</dependency>
+		 
+		<dependency>
+		    <groupId>org.apache.struts</groupId>
+		    <artifactId>struts2-spring-plugin</artifactId>
+		    <version>${org.strutsframework-version}</version>
+		</dependency>
+		
+		<!-- Dependency for Hibernate ORM Framework -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <version>5.1.0.Final</version>
+		    <scope>compile</scope>
+		</dependency>
+		
+		<!-- Dependency for Apache Commons DBCP (database connection pooling) -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-dbcp2</artifactId>
+		    <version>2.1.1</version>
+		</dependency>
+		
+		<!-- Dependency for MySQL Connector-Java Library -->
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>5.1.38</version>
 		</dependency>
 		
 	</dependencies>

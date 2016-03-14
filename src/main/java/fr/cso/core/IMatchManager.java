@@ -2,7 +2,7 @@ package fr.cso.core;
 
 import java.util.List;
 
-import fr.cso.models.Match;
+import fr.cso.model.Match;
 
 public interface IMatchManager {
 	List<Match> listeMatchs();

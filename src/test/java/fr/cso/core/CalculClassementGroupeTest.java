@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import fr.cso.models.beans.ClassementEquipe;
-import fr.cso.models.Equipe;
-import fr.cso.models.Resultat;
+import fr.cso.model.Equipe;
+import fr.cso.model.Resultat;
+import fr.cso.model.bean.ClassementEquipe;
 
 public class CalculClassementGroupeTest {
 

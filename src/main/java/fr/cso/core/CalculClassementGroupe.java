@@ -12,11 +12,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
-import fr.cso.models.beans.ClassementEquipe;
-import fr.cso.models.Equipe;
-import fr.cso.models.Resultat;
+import fr.cso.model.Equipe;
+import fr.cso.model.Resultat;
+import fr.cso.model.bean.ClassementEquipe;
+
+import java.util.Set;
 
 public class CalculClassementGroupe {
 

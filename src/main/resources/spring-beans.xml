@@ -3,14 +3,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 	http://www.springframework.org/schema/tx
-	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
  
- 	<bean id="helloWorld" class="fr.cso.actions.HelloWorld">
+ 	<bean id="helloWorld" class="fr.cso.action.HelloWorld">
 		<property name="equipeManager" ref="equipeManager" />	
 	</bean>
-	<bean id="resultatsAction" class="fr.cso.actions.ResultatsAction">
+	
+	<bean id="resultatsAction" class="fr.cso.action.ResultatsAction">
 		<property name="resultatManager" ref="resultatManager" />	
 		<property name="matchManager" ref="matchManager" />	
 	</bean>
@@ -41,18 +42,22 @@
     <tx:annotation-driven />
     
     <bean id="transactionManager"
-        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
  
- 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-    	<property name="jndiName" value="java:comp/env/jdbc/pronos"/>
-	</bean>
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+        destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/pronos" />
+        <property name="username" value="root" />
+        <property name="password" value="" />
+    </bean>
 
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="fr.cso.models"/>
+		<property name="packagesToScan" value="fr.cso.model"/>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>

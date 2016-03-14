@@ -2,7 +2,7 @@ package fr.cso.dao;
 
 import java.util.List;
 
-import fr.cso.models.Match;
+import fr.cso.model.Match;
 
 public interface IMatchDAO {
 	List<Match> listeMatchs();

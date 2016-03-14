@@ -12,15 +12,15 @@
 
 		<default-action-ref name="index" />
 
-		<action name="helloWorld" class="fr.cso.actions.HelloWorld" method="listeEquipes">
+		<action name="helloWorld" class="fr.cso.action.HelloWorld" method="listeEquipes">
 			<result>/jsp/HelloWorld.jsp</result>
 		</action>
 
-		<action name="resultats" class="fr.cso.actions.ResultatsAction" method="listerResultats">
+		<action name="resultats" class="fr.cso.action.ResultatsAction" method="listerResultats">
 			<result>/jsp/Resultats.jsp</result>
 		</action>
 		
-		<action name="validerResultats" class="fr.cso.actions.ResultatsAction" method="validerResultats">
+		<action name="validerResultats" class="fr.cso.action.ResultatsAction" method="validerResultats">
 			<result>/jsp/Resultats.jsp</result>
 		</action>
 

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import fr.cso.dao.IResultatDAO;
-import fr.cso.models.Resultat;
+import fr.cso.model.Resultat;
 
 public class ResultatDAO extends HibernateDaoSupport implements IResultatDAO {
 	

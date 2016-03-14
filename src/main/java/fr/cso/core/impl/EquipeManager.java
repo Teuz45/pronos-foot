@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.cso.core.IEquipeManager;
 import fr.cso.dao.IEquipeDAO;
-import fr.cso.models.Equipe;
+import fr.cso.model.Equipe;
 
 public class EquipeManager implements IEquipeManager {
 

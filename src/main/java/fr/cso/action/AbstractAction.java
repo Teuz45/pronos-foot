@@ -1,12 +1,12 @@
-package fr.cso.actions;
+package fr.cso.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import fr.cso.models.Equipe;
-import fr.cso.models.Match;
-import fr.cso.models.Phase;
-import fr.cso.models.Resultat;
-import fr.cso.models.User;
+import fr.cso.model.Equipe;
+import fr.cso.model.Match;
+import fr.cso.model.Phase;
+import fr.cso.model.Resultat;
+import fr.cso.model.User;
 
 public class AbstractAction extends ActionSupport {
 

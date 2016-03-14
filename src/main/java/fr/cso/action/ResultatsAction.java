@@ -1,16 +1,14 @@
-package fr.cso.actions;
+package fr.cso.action;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.aspectj.apache.bcel.classfile.annotation.ClassElementValueGen;
-
 import fr.cso.core.CalculClassementGroupe;
 import fr.cso.core.IMatchManager;
 import fr.cso.core.IResultatManager;
-import fr.cso.models.Match;
-import fr.cso.models.Resultat;
-import fr.cso.models.beans.ClassementEquipe;
+import fr.cso.model.Match;
+import fr.cso.model.Resultat;
+import fr.cso.model.bean.ClassementEquipe;
 
 public class ResultatsAction extends AbstractAction {
 

@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.cso.core.IResultatManager;
 import fr.cso.dao.IResultatDAO;
-import fr.cso.models.Resultat;
+import fr.cso.model.Resultat;
 
 public class ResultatManager implements IResultatManager {
 
