@@ -2,14 +2,14 @@ package fr.cso.actions;
 
 import java.util.List;
 
-import fr.cso.core.IEquipeBo;
+import fr.cso.core.IEquipeManager;
 import fr.cso.models.Equipe;
 
 public class HelloWorld extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 
-	private IEquipeBo equipeBo;
+	private IEquipeManager equipeManager;
 	
 	private List<Equipe> listEquipes;
 	private String message;
@@ -25,7 +25,7 @@ public class HelloWorld extends AbstractAction {
 		
 		setMessage(getText(MESSAGE));
 		
-		listEquipes = equipeBo.listeEquipes();
+		listEquipes = equipeManager.listeEquipes();
 		
 		return SUCCESS;
 	
@@ -49,8 +49,8 @@ public class HelloWorld extends AbstractAction {
 		this.listEquipes = listEquipes;
 	}
 
-	public void setEquipeBo(IEquipeBo equipeBo) {
-		this.equipeBo = equipeBo;
+	public void setEquipeManager(IEquipeManager equipeManager) {
+		this.equipeManager = equipeManager;
 	}
 	
 }

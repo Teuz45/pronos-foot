@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.cso.core.IMatchBo;
+import fr.cso.core.IMatchManager;
 import fr.cso.dao.IMatchDAO;
 import fr.cso.models.Match;
 
-public class MatchBo implements IMatchBo {
+public class MatchManager implements IMatchManager {
 
 	private IMatchDAO matchDAO;
 	

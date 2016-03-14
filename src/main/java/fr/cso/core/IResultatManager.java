@@ -4,6 +4,6 @@ import java.util.List;
 
 import fr.cso.models.Resultat;
 
-public interface IResultatBo {
+public interface IResultatManager {
 	List<Resultat> listeResultats();
 }

@@ -4,6 +4,6 @@ import java.util.List;
 
 import fr.cso.models.Equipe;
 
-public interface IEquipeBo {
+public interface IEquipeManager {
 	List<Equipe> listeEquipes();
 }

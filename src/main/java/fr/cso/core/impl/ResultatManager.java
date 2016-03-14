@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.cso.core.IResultatBo;
+import fr.cso.core.IResultatManager;
 import fr.cso.dao.IResultatDAO;
 import fr.cso.models.Resultat;
 
-public class ResultatBo implements IResultatBo {
+public class ResultatManager implements IResultatManager {
 
 	private IResultatDAO resultatDAO;
 	

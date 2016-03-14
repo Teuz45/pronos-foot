@@ -8,21 +8,21 @@
 	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
  
  	<bean id="helloWorld" class="fr.cso.actions.HelloWorld">
-		<property name="equipeBo" ref="equipeBo" />	
+		<property name="equipeManager" ref="equipeManager" />	
 	</bean>
 	<bean id="resultatsAction" class="fr.cso.actions.ResultatsAction">
-		<property name="resultatBo" ref="resultatBo" />	
-		<property name="matchBo" ref="matchBo" />	
+		<property name="resultatManager" ref="resultatManager" />	
+		<property name="matchManager" ref="matchManager" />	
 	</bean>
 	
 
-	<bean id="equipeBo" class="fr.cso.core.impl.EquipeBo" >
+	<bean id="equipeManager" class="fr.cso.core.impl.EquipeManager" >
 		<property name="equipeDAO" ref="equipeDAO" />
 	</bean>
-	<bean id="resultatBo" class="fr.cso.core.impl.ResultatBo" >
+	<bean id="resultatManager" class="fr.cso.core.impl.ResultatManager" >
 		<property name="resultatDAO" ref="resultatDAO" />
 	</bean>
-	<bean id="matchBo" class="fr.cso.core.impl.MatchBo" >
+	<bean id="matchManager" class="fr.cso.core.impl.MatchManager" >
 		<property name="matchDAO" ref="matchDAO" />
 	</bean>
 	

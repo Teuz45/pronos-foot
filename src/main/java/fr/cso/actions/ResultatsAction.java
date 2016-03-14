@@ -6,8 +6,8 @@ import java.util.List;
 import org.aspectj.apache.bcel.classfile.annotation.ClassElementValueGen;
 
 import fr.cso.core.CalculClassementGroupe;
-import fr.cso.core.IMatchBo;
-import fr.cso.core.IResultatBo;
+import fr.cso.core.IMatchManager;
+import fr.cso.core.IResultatManager;
 import fr.cso.models.Match;
 import fr.cso.models.Resultat;
 import fr.cso.models.beans.ClassementEquipe;
@@ -16,8 +16,8 @@ public class ResultatsAction extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 
-	private IResultatBo resultatBo;
-	private IMatchBo matchBo;
+	private IResultatManager resultatManager;
+	private IMatchManager matchManager;
 	
 	private List<Resultat> listeResultats;
 	private List<ClassementEquipe> classementGroupe;
@@ -26,10 +26,10 @@ public class ResultatsAction extends AbstractAction {
 		
 		init();
 		
-		listeResultats = resultatBo.listeResultats();
+		listeResultats = resultatManager.listeResultats();
 		
 		
-		List<Match> listeMatchsParGroupe = matchBo.listeMatchsParGroupe("A");
+		List<Match> listeMatchsParGroupe = matchManager.listeMatchsParGroupe("A");
 		
 		List<Resultat> listeResultatGroupe = new ArrayList<>();
 		for(Match match : listeMatchsParGroupe) {
@@ -41,8 +41,8 @@ public class ResultatsAction extends AbstractAction {
 	
 	}
 
-	public void setResultatBo(IResultatBo resultatBo) {
-		this.resultatBo = resultatBo;
+	public void setResultatManager(IResultatManager resultatManager) {
+		this.resultatManager = resultatManager;
 	}
 
 	public List<Resultat> getListeResultats() {
@@ -53,8 +53,8 @@ public class ResultatsAction extends AbstractAction {
 		this.listeResultats = listeResultats;
 	}
 
-	public void setMatchBo(IMatchBo matchBo) {
-		this.matchBo = matchBo;
+	public void setMatchManager(IMatchManager matchManager) {
+		this.matchManager = matchManager;
 	}
 
 	public List<ClassementEquipe> getClassementGroupe() {
