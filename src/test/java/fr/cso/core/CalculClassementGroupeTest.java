@@ -15,12 +15,15 @@ public class CalculClassementGroupeTest {
 	public void calculClassementGroupeTest() {
 		Equipe equipeFra = new Equipe();
 		equipeFra.setCdEquipe("FRA");
+		equipeFra.setNom("FRA");
 		equipeFra.setCoeffUEFA(10);
 		Equipe equipeIta = new Equipe();
 		equipeIta.setCdEquipe("ITA");
-		equipeIta.setCoeffUEFA(5);
+		equipeIta.setNom("ITA");
+		equipeIta.setCoeffUEFA(7);
 		Equipe equipeAll = new Equipe();
 		equipeAll.setCdEquipe("ALL");
+		equipeAll.setNom("ALL");
 		equipeAll.setCoeffUEFA(6);
 		
 		List<Resultat> listeResultatsGroupe = new ArrayList<Resultat>();
@@ -43,7 +46,7 @@ public class CalculClassementGroupeTest {
 		resultat3.setScoreExt(1);
 		listeResultatsGroupe.add(resultat3);
 		
-		List<ClassementEquipe> mapClassementGroupe = CalculClassementGroupe.getClassementGroupe(listeResultatsGroupe);
+		List<ClassementEquipe> mapClassementGroupe = CalculClassementGroupe.getClassementGroupeFromResultat(listeResultatsGroupe);
 	}
 	
 }

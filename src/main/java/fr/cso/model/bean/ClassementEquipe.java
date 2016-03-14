@@ -1,5 +1,6 @@
 package fr.cso.model.bean;
 
+import java.math.BigDecimal;
 import java.util.Comparator;
 
 public class ClassementEquipe implements Comparable<ClassementEquipe> {
@@ -34,6 +35,8 @@ public class ClassementEquipe implements Comparable<ClassementEquipe> {
 	private int nbButsContre = 0;
 	
 	private int differenceButs = 0;
+	
+	private BigDecimal nbPointsPonderes = new BigDecimal(0);
 	
 	private static Comparator<ClassementEquipe> comparatorClassementGeneralPoule = new Comparator<ClassementEquipe>() {
 	    public int compare(ClassementEquipe classementEq1, ClassementEquipe classementEq2) {
@@ -182,6 +185,14 @@ public class ClassementEquipe implements Comparable<ClassementEquipe> {
 		return comparatorClassementGeneralPoule;
 	}
 
+	public BigDecimal getNbPointsPonderes() {
+		return nbPointsPonderes;
+	}
+
+	public void setNbPointsPonderes(BigDecimal nbPointsPonderes) {
+		this.nbPointsPonderes = nbPointsPonderes;
+	}
+
 	@Override
 	public String toString() {
 		
@@ -202,6 +213,7 @@ public class ClassementEquipe implements Comparable<ClassementEquipe> {
 		str.append(this.getNbButsPour() + "\t");
 		str.append(this.getNbButsContre() + "\t");
 		str.append(this.getDifferenceButs() + "\t");
+		str.append(String.format("%.0f", this.getNbPointsPonderes()) + "\t");
 		
 		return str.toString();
 	}	
