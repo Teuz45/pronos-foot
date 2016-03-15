@@ -1,36 +1,40 @@
 package fr.cso.action;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import fr.cso.core.CalculClassementGroupe;
 import fr.cso.core.IResultatManager;
+import fr.cso.enums.GroupesEnum;
 import fr.cso.model.Match;
 import fr.cso.model.Resultat;
-import fr.cso.model.bean.ClassementEquipe;
+import fr.cso.model.bean.ClassementGroupe;
 
 public class ResultatsAction extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 
 	private IResultatManager resultatManager;
-//	private IMatchManager matchManager;
 	
 	private List<Resultat> listeResultats;
-	private List<ClassementEquipe> classementGroupe;
+	private List<ClassementGroupe> listeClassementsGroupes;
 	
 	public String listerResultats() throws Exception{
 		
 		listeResultats = resultatManager.listeResultats();
 		
-		
-		List<Match> listeMatchsParGroupe = getMatchManager().listeMatchsParGroupe("A");
-		
-		List<Resultat> listeResultatGroupe = new ArrayList<>();
-		for(Match match : listeMatchsParGroupe) {
-			listeResultatGroupe.add(match.getResultat());
+		listeClassementsGroupes = new ArrayList<>();
+		for(GroupesEnum groupe : Arrays.asList(GroupesEnum.values())) {
+			ClassementGroupe classementGroupe = new ClassementGroupe(groupe);
+			List<Match> listeMatchsParGroupe2 = getMatchManager().listeMatchsParGroupe(groupe.getCdGroupe());
+			List<Resultat> listeResultatGroupe2 = new ArrayList<>();
+			for(Match match : listeMatchsParGroupe2) {
+				listeResultatGroupe2.add(match.getResultat());
+			}
+			classementGroupe.getListeClassementsEquipe().addAll(CalculClassementGroupe.getClassementGroupe(listeResultatGroupe2));
+			listeClassementsGroupes.add(classementGroupe);
 		}
-		classementGroupe = CalculClassementGroupe.getClassementGroupe(listeResultatGroupe);
 		
 		return SUCCESS;
 	
@@ -48,17 +52,11 @@ public class ResultatsAction extends AbstractAction {
 		this.listeResultats = listeResultats;
 	}
 
-//	public void setMatchManager(IMatchManager matchManager) {
-//		this.matchManager = matchManager;
-//	}
-
-	public List<ClassementEquipe> getClassementGroupe() {
-		return classementGroupe;
+	public List<ClassementGroupe> getListeClassementsGroupes() {
+		return listeClassementsGroupes;
 	}
 
-	public void setClassementGroupe(List<ClassementEquipe> classementGroupe) {
-		this.classementGroupe = classementGroupe;
+	public void setListeClassementsGroupes(List<ClassementGroupe> listeClassementsGroupes) {
+		this.listeClassementsGroupes = listeClassementsGroupes;
 	}	
-	
-	
 }

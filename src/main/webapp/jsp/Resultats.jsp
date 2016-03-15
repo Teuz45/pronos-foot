@@ -70,60 +70,63 @@
 					</s:iterator>
 				</div>
 				<div class="content-right">
-					<h2 class="titreClassement">Groupe A</h2>
-					<table class="classement">
-						<thead>
-							<tr>
-								<th class="title"><abbr class="standings-abbr" title="Rang">Rg</abbr> </th>
-								<th class="title-equipe">Equipe</th>
-								<th class="title"><abbr class="standings-abbr" title="Joué(s)">J</abbr></th>
-								<th class="title"><abbr class="standings-abbr" title="Victoires">V</abbr></th>
-								<th class="title"><abbr class="standings-abbr" title="Matchs nuls">N</abbr></th>
-								<th class="title"><abbr class="standings-abbr" title="Défaites">D</abbr></th>
-								<th class="title"><abbr class="standings-abbr" title="Buts pour">bp</abbr></th>
-								<th class="title"><abbr class="standings-abbr" title="Buts contre">bc</abbr></th>
-								<th class="title"><abbr class="standings-abbr" title="Différence de buts">diff</abbr></th>
-								<th class="title-points"><abbr class="standings-abbr" title="Points">pts</abbr></th>
-							</tr>
-						</thead>
-						<tbody>
-							<s:iterator value="classementGroupe" status="classementStatus" var="classement">
-								<tr class="<s:if test="#classementStatus.index %2 == 0">data-ligne-paire</s:if><s:else>data-ligne-impaire</s:else>">
-									<td class="data">
-										<s:property value="ranking"/>
-									</td>
-									<td class="data-equipe">
-										<img src="<s:property value='equipe.logo' />"> <s:property value="equipe.nom"/>
-									</td>
-									<td class="data">
-										<s:property value="nbMatchsJoues"/>
-									</td>
-									<td class="data">
-										<s:property value="nbVictoires"/>
-									</td>
-									<td class="data">
-										<s:property value="nbNuls"/>
-									</td>
-									<td class="data">
-										<s:property value="nbDefaites"/>
-									</td>
-									<td class="data">
-										<s:property value="nbButsPour"/>
-									</td>
-									<td class="data">
-										<s:property value="nbButsContre"/>
-									</td>
-									<td class="data">
-										<s:property value="differenceButs"/>
-									</td>
-									<td class="data-points">
-										<s:property value="nbPoints"/>
-									</td>
-								</tr> 
-								</s:iterator>
-							</tbody>
-						</table>
-					
+					<s:iterator value="listeClassementsGroupes" status="classementsStatus" var="classements">
+						<div class="classement">
+							<h2 class="titreClassement">Groupe <s:property value="groupe.cdGroupe"/></h2>
+							<table class="tabClassement">
+								<thead>
+									<tr>
+										<th class="title"><abbr class="standings-abbr" title="Rang">Rg</abbr> </th>
+										<th class="title-equipe">Equipe</th>
+										<th class="title"><abbr class="standings-abbr" title="Joué(s)">J</abbr></th>
+										<th class="title"><abbr class="standings-abbr" title="Victoires">V</abbr></th>
+										<th class="title"><abbr class="standings-abbr" title="Matchs nuls">N</abbr></th>
+										<th class="title"><abbr class="standings-abbr" title="Défaites">D</abbr></th>
+										<th class="title"><abbr class="standings-abbr" title="Buts pour">bp</abbr></th>
+										<th class="title"><abbr class="standings-abbr" title="Buts contre">bc</abbr></th>
+										<th class="title"><abbr class="standings-abbr" title="Différence de buts">diff</abbr></th>
+										<th class="title-points"><abbr class="standings-abbr" title="Points">pts</abbr></th>
+									</tr>
+								</thead>
+								<tbody>
+									<s:iterator value="#classements.listeClassementsEquipe" status="classementStatus" var="classement">
+										<tr class="<s:if test="#classementStatus.index %2 == 0">data-ligne-paire</s:if><s:else>data-ligne-impaire</s:else>">
+											<td class="data">
+												<s:property value="#classement.ranking"/>
+											</td>
+											<td class="data-equipe">
+												<img src="<s:property value='#classement.equipe.logo' />"> <s:property value="#classement.equipe.nom"/>
+											</td>
+											<td class="data">
+												<s:property value="#classement.nbMatchsJoues"/>
+											</td>
+											<td class="data">
+												<s:property value="#classement.nbVictoires"/>
+											</td>
+											<td class="data">
+												<s:property value="#classement.nbNuls"/>
+											</td>
+											<td class="data">
+												<s:property value="#classement.nbDefaites"/>
+											</td>
+											<td class="data">
+												<s:property value="#classement.nbButsPour"/>
+											</td>
+											<td class="data">
+												<s:property value="#classement.nbButsContre"/>
+											</td>
+											<td class="data">
+												<s:property value="#classement.differenceButs"/>
+											</td>
+											<td class="data-points">
+												<s:property value="#classement.nbPoints"/>
+											</td>
+										</tr> 
+									</s:iterator>
+								</tbody>
+							</table>
+						</div>
+					</s:iterator>
 				</div>
 				<div style="clear: both;"></div>
 			</form>

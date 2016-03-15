@@ -226,6 +226,7 @@ body{
 	font-size: 25px;
 	font-weight: bold;
 	border-radius: 5px;
+	border : 1px solid rgb(229, 229, 229);
 	font-family: 'LedDisplay', Arial, Verdana, sans-serif;
 }
 
@@ -273,42 +274,46 @@ body{
 }
 
 /* CLASSEMENT */
-.titreClassement {
+.classement  {
+	padding-bottom: 20px;
+}
+
+.classement .titreClassement {
 	color: rgb(26, 26, 26);
 	font-size: 14px;
 }
 
-.classement {
+.classement .tabClassement {
 	border-collapse: collapse;
 }
 
-.classement .title {
+.classement .tabClassement .title {
 	width: 25px;
 }
 
-.classement .title-equipe {
+.classement .tabClassement .title-equipe {
 	width : 150px;
 }
 
-.classement .title-points {
+.classement .tabClassement .title-points {
 	width : 50px;
 }
 
-.classement .data {
+.classement .tabClassement .data {
 	text-align: center;
 }
 
-.classement .data-points {
+.classement .tabClassement .data-points {
 	text-align: center;
 	font-weight: bold;
 }
 
-.classement .data-equipe {
+.classement .tabClassement .data-equipe {
 	text-align: left;
 	font-weight: bold;
 }
 
-.classement .data-equipe img {
+.classement .tabClassement .data-equipe img {
 	width: 15px;
 	height: 15px;
 	margin-bottom: 3px;
@@ -316,21 +321,21 @@ body{
 	vertical-align:middle;
 }
 
-.classement .data-ligne-paire {
+.classement .tabClassement .data-ligne-paire {
 	background-color: rgb(255, 255, 255);
 }
 
-.classement .data-ligne-impaire {
+.classement .tabClassement .data-ligne-impaire {
 	background-color: rgb(245, 245, 245);
 }
 
-.classement td {
+.classement .tabClassement td {
 	font-size: 14px;
 	border-bottom: 1px solid rgb(229, 229, 229);
 	line-height: 35px;
 }
 
-.classement th {
+.classement .tabClassement th {
     color: #ffffff;
     background-color: #1384b9;
     line-height: 20px;
