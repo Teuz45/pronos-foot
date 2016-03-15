@@ -21,8 +21,6 @@ public class HelloWorld extends AbstractAction {
 
 	//list all customers
 	public String listeEquipes() throws Exception{
-		init();
-		
 		setMessage(getText(MESSAGE));
 		
 		listEquipes = equipeManager.listeEquipes();

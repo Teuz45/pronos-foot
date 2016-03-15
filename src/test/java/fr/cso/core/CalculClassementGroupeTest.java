@@ -46,7 +46,7 @@ public class CalculClassementGroupeTest {
 		resultat3.setScoreExt(1);
 		listeResultatsGroupe.add(resultat3);
 		
-		List<ClassementEquipe> mapClassementGroupe = CalculClassementGroupe.getClassementGroupeFromResultat(listeResultatsGroupe);
+		List<ClassementEquipe> mapClassementGroupe = CalculClassementGroupe.getClassementGroupe(listeResultatsGroupe);
 	}
 	
 }

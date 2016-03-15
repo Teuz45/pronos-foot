@@ -4,6 +4,8 @@ import fr.cso.model.Equipe;
 
 public class ResultatMatch {
 
+	private boolean matchJoue;
+	
 	private Integer scoreDom;
 
 	private Integer scoreExt;
@@ -15,6 +17,16 @@ public class ResultatMatch {
 	private Equipe equipeExt;
 
 	private Equipe equipeDom;
+
+	
+	
+	public boolean isMatchJoue() {
+		return matchJoue;
+	}
+
+	public void setMatchJoue(boolean matchJoue) {
+		this.matchJoue = matchJoue;
+	}
 
 	public Integer getScoreDom() {
 		return scoreDom;

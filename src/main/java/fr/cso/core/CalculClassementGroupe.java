@@ -36,34 +36,32 @@ public class CalculClassementGroupe {
 		}
 	};
 	
-	public static List<ClassementEquipe> getClassementGroupeFromResultat(List<Resultat> listeResultatsGroupe) {
+	public static List<ClassementEquipe> getClassementGroupe(List<Resultat> listeResultatsGroupe) {
 		
 		List<ClassementEquipe> classementGroupe = null;
 		
-		if(listeResultatsGroupe!=null) {
-			List<ResultatMatch> listeResultatsMatch = new ArrayList<>();
-			for(Resultat resultat : listeResultatsGroupe) {
-				ResultatMatch resultatMatch = new ResultatMatch();
-				resultatMatch.setEquipeDom(resultat.getEquipeDom());
-				resultatMatch.setEquipeExt(resultat.getEquipeExt());
-				resultatMatch.setScoreDom(resultat.getScoreDom());
-				resultatMatch.setScoreExt(resultat.getScoreExt());
-				resultatMatch.setScorePenDom(resultat.getScorePenDom());
-				resultatMatch.setScorePenExt(resultat.getScorePenExt());
-				listeResultatsMatch.add(resultatMatch);
-			}
-			
-			classementGroupe = getClassementGroupe(listeResultatsMatch);
+		if(listeResultatsGroupe!=null) {			
+			classementGroupe = calculClassementGroupe(convertResultatInResultatMatchBean(listeResultatsGroupe));
 		}
 		
 		return classementGroupe;
 	}
 	
-	private static List<ClassementEquipe> getClassementGroupe(List<ResultatMatch> listeResultatsGroupe) {
+	private static List<ClassementEquipe> calculClassementGroupe(List<ResultatMatch> listeResultatsGroupe) {
 		
-		Map<Equipe, ClassementEquipe> mapClassementGroupe = calculClassementGroupe(listeResultatsGroupe);
+		// Construction du classement d'un groupe
+		Map<Equipe, ClassementEquipe> classementGroupe = calculDetailsEquipeParMatch(listeResultatsGroupe);
 		
-		// Contrôle des égalités #1
+		// Pondération
+		for (Iterator<Map.Entry<Equipe, ClassementEquipe>> it = classementGroupe.entrySet().iterator(); it.hasNext();) {
+			Map.Entry<Equipe, ClassementEquipe> entry = it.next();
+			entry.getValue().setNbPointsPonderes(new BigDecimal(entry.getValue().getNbPoints()).multiply(new BigDecimal(Math.pow(10 ,POIDS_NB_POINTS_GLOBAL))));
+		}
+		
+		// Classement du groupe selon les points pondérés
+		Map<Equipe, ClassementEquipe> mapClassementGroupe = calculRankings(classementGroupe);
+		
+		// Contrôle des égalités
 		List<List<Equipe>> listesEquipesAEgalite = getListesEquipesAEgalite(mapClassementGroupe);
 		
 		if(listesEquipesAEgalite==null) {
@@ -73,6 +71,8 @@ public class CalculClassementGroupe {
 			return new ArrayList<ClassementEquipe>(mapClassementGroupe.values());
 		}
 		else {
+			// En cas d'égalité, on calcule tous les critères pour chaque liste d'équipes à égalité
+			
 			for(List<Equipe> listeEquipesAEgalite : listesEquipesAEgalite) {
 				// On récupère la liste des résultats des équipes à égalité
 				List<ResultatMatch> listeResultatsMatchsEquipesAEgalite = new ArrayList<ResultatMatch>();
@@ -108,35 +108,16 @@ public class CalculClassementGroupe {
 					if(listeEquipesAEgalite.contains(entry.getKey())) {				
 						BigDecimal nbPointsPonderes = entry.getValue().getNbPointsPonderes()
 								.add(new BigDecimal((100 + entry.getValue().getDifferenceButs())).multiply(new BigDecimal(Math.pow(10 ,POIDS_DIFF_BUTS_GLOBAL))))
-								.add(new BigDecimal(entry.getValue().getNbButsPour()).multiply(new BigDecimal(Math.pow(10 ,POIDS_BUTS_POUR_GLOBAL))))
-								.add(new BigDecimal(entry.getKey().getCoeffUEFA()));
+								.add(new BigDecimal(entry.getValue().getNbButsPour()).multiply(new BigDecimal(Math.pow(10 ,POIDS_BUTS_POUR_GLOBAL))));
+						if(isGroupeTermine(listeResultatsGroupe)) {
+							nbPointsPonderes.add(new BigDecimal(entry.getKey().getCoeffUEFA()));
+						}
 						mapClassementGroupe.get(entry.getKey()).setNbPointsPonderes(nbPointsPonderes);
 					}
 				}
 			}
 			
-			// Classement des équipes selon les points pondérés
-			List<Map.Entry<Equipe, ClassementEquipe>> listeClassementEquipe = new LinkedList<Map.Entry<Equipe, ClassementEquipe>>(mapClassementGroupe.entrySet());
-			Collections.sort(listeClassementEquipe, comparatorPointsPonderes);
-			
-			// Détermination des rankings selon les points pondérés
-			Map<Equipe, ClassementEquipe> mapClassementGroupe2 = new LinkedHashMap<Equipe, ClassementEquipe>();
-			ClassementEquipe prevClassementEquipe = null;
-		    int ranking = 1;
-		    int cpt = 0;
-			for (Iterator<Map.Entry<Equipe, ClassementEquipe>> it = listeClassementEquipe.iterator(); it.hasNext();) {
-				Map.Entry<Equipe, ClassementEquipe> entry = it.next();
-		        if (prevClassementEquipe != null) {	
-			        if (prevClassementEquipe.getNbPointsPonderes().compareTo(entry.getValue().getNbPointsPonderes()) != 0) {
-			        	ranking = cpt + 1;
-			        }
-		        }
-		        prevClassementEquipe = entry.getValue();
-		        entry.getValue().setRanking(ranking);
-		        cpt++;
-				
-				mapClassementGroupe2.put(entry.getKey(), entry.getValue());
-			}
+			Map<Equipe, ClassementEquipe> mapClassementGroupe2 = calculRankings(mapClassementGroupe);
 			
 			System.out.println("Classement Groupe");
 			afficherClassementGroupe(mapClassementGroupe2.values());
@@ -145,16 +126,8 @@ public class CalculClassementGroupe {
 		}
 	}
 
-	private static Map<Equipe, ClassementEquipe> calculClassementGroupe(List<ResultatMatch> listeResultatsMatch) {
-		// Construction du classement d'un groupe
-		Map<Equipe, ClassementEquipe> classementGroupe = calculDetailsEquipeParMatch(listeResultatsMatch);
-		
-		// Pondération
-		for (Iterator<Map.Entry<Equipe, ClassementEquipe>> it = classementGroupe.entrySet().iterator(); it.hasNext();) {
-			Map.Entry<Equipe, ClassementEquipe> entry = it.next();
-			entry.getValue().setNbPointsPonderes(new BigDecimal(entry.getValue().getNbPoints()).multiply(new BigDecimal(Math.pow(10 ,POIDS_NB_POINTS_GLOBAL))));
-		}
-		
+	
+	private static Map<Equipe, ClassementEquipe> calculRankings(Map<Equipe, ClassementEquipe> classementGroupe) {
 		// Classement des équipes selon les points pondérés
 		List<Map.Entry<Equipe, ClassementEquipe>> listeClassementEquipe = new LinkedList<Map.Entry<Equipe, ClassementEquipe>>(classementGroupe.entrySet());
 		Collections.sort(listeClassementEquipe, comparatorPointsPonderes);
@@ -178,10 +151,6 @@ public class CalculClassementGroupe {
 			
 			mapClassementGroupe.put(entry.getKey(), entry.getValue());
 		}
-		
-		System.out.println("Classement Groupe");
-		afficherClassementGroupe(mapClassementGroupe.values());
-		
 		return mapClassementGroupe;
 	}
 
@@ -194,7 +163,7 @@ public class CalculClassementGroupe {
 			// Initialisation Dom
 			Equipe equipeDom = resultatMatch.getEquipeDom();
 			if(!mapClassementPoule.containsKey(equipeDom)) {
-				mapClassementPoule.put(equipeDom, new ClassementEquipe(equipeDom.getNom()));
+				mapClassementPoule.put(equipeDom, new ClassementEquipe(equipeDom));
 			}
 			ClassementEquipe classementEquipeDom = mapClassementPoule.get(equipeDom);
 			Integer scoreDom = resultatMatch.getScoreDom();
@@ -202,13 +171,12 @@ public class CalculClassementGroupe {
 			// Initialisation Ext
 			Equipe equipeExt = resultatMatch.getEquipeExt();
 			if(!mapClassementPoule.containsKey(equipeExt)) {
-				mapClassementPoule.put(equipeExt, new ClassementEquipe(equipeExt.getNom()));
+				mapClassementPoule.put(equipeExt, new ClassementEquipe(equipeExt));
 			}
 			ClassementEquipe classementEquipeExt = mapClassementPoule.get(equipeExt);
 			Integer scoreExt = resultatMatch.getScoreExt();
 			
-			// TODO modifier par isJoue
-			if(scoreDom != null && scoreExt != null) {
+			if(resultatMatch.isMatchJoue()) {
 				// Matchs joués
 				classementEquipeDom.setNbMatchsJoues(classementEquipeDom.getNbMatchsJoues() + 1);
 				classementEquipeExt.setNbMatchsJoues(classementEquipeExt.getNbMatchsJoues() + 1);
@@ -292,6 +260,32 @@ public class CalculClassementGroupe {
 			}
 		}
 		return listesEquipesAEgalite;
+	}
+	
+	public static boolean isGroupeTermine(List<ResultatMatch> listeResultatsMatch) {
+		// List<ResultatMatch> listeResultatsMatch = convertResultatInResultatMatchBean(listeResultatsGroupe);
+		for(ResultatMatch resultatMatch : listeResultatsMatch) {
+			if(!resultatMatch.isMatchJoue()) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private static List<ResultatMatch> convertResultatInResultatMatchBean(List<Resultat> listeResultatsGroupe) {
+		List<ResultatMatch> listeResultatsMatch = new ArrayList<>();
+		for(Resultat resultat : listeResultatsGroupe) {
+			ResultatMatch resultatMatch = new ResultatMatch();
+			resultatMatch.setMatchJoue(resultat.isMatchJoue());
+			resultatMatch.setEquipeDom(resultat.getEquipeDom());
+			resultatMatch.setEquipeExt(resultat.getEquipeExt());
+			resultatMatch.setScoreDom(resultat.getScoreDom());
+			resultatMatch.setScoreExt(resultat.getScoreExt());
+			resultatMatch.setScorePenDom(resultat.getScorePenDom());
+			resultatMatch.setScorePenExt(resultat.getScorePenExt());
+			listeResultatsMatch.add(resultatMatch);
+		}
+		return listeResultatsMatch;
 	}
 	
 	private static void afficherClassementGroupe(Collection<ClassementEquipe> listeClassementGroupe) {

@@ -1,67 +1,31 @@
 package fr.cso.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Preparable;
 
-import fr.cso.model.Equipe;
+import fr.cso.core.IMatchManager;
 import fr.cso.model.Match;
-import fr.cso.model.Phase;
-import fr.cso.model.Resultat;
 import fr.cso.model.User;
 
-public class AbstractAction extends ActionSupport {
+public class AbstractAction extends ActionSupport implements Preparable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String libelleProchainEvenement;
+	private IMatchManager matchManager;
+	
 	private long dateProchainEvenement;
 	private Match prochainMatch;
 	private User utilisateur;
 	
-	public void init() {
-				
-		dateProchainEvenement = 1465585200L;
+	@Override
+	public void prepare() throws Exception {
+		prochainMatch = matchManager.getProchainMatch();
 		
-		prochainMatch = new Match();
-		prochainMatch.setNumMatch(2);
-		Resultat resultat = new Resultat();
-		Equipe equipeDom = new Equipe();
-		equipeDom.setCdEquipe("FRA");
-		equipeDom.setLogo("images/flags/fra.png");
-		resultat.setEquipeDom(equipeDom);
-		Equipe equipeExt = new Equipe();
-		equipeExt.setCdEquipe("ROM");
-		equipeExt.setLogo("images/flags/rou.png");
-		resultat.setEquipeExt(equipeExt);
-		Phase phase = new Phase();
-		phase.setCdPhase("GROUPES");
-		phase.setLibelle("Groupe");
-		prochainMatch.setPhase(phase);
-		prochainMatch.setGroupe("A");
-		prochainMatch.setResultat(resultat);
-		
-		if(prochainMatch.getNumMatch()==1) {
-			libelleProchainEvenement = "Début de la compétition".toUpperCase();
-		}
-		else {
-			Phase phaseProchainMatch = prochainMatch.getPhase();
-			if(phaseProchainMatch.getCdPhase()=="GROUPES") {
-				libelleProchainEvenement = phaseProchainMatch.getLibelle() + " " + prochainMatch.getGroupe();
-			}
-			else {
-				libelleProchainEvenement = phaseProchainMatch.getLibelle();
-			}
-		}
+		dateProchainEvenement = prochainMatch.getDate().getTime();
 		
 		utilisateur = new User();
 		utilisateur.setProfil("USER");
-	}
-
-	public String getLibelleProchainEvenement() {
-		return libelleProchainEvenement;
-	}
-
-	public void setLibelleProchainEvenement(String libelleProchainEvenement) {
-		this.libelleProchainEvenement = libelleProchainEvenement;
+		
 	}
 
 	public long getDateProchainEvenement() {
@@ -87,6 +51,14 @@ public class AbstractAction extends ActionSupport {
 	public void setUtilisateur(User utilisateur) {
 		this.utilisateur = utilisateur;
 	}
-	
+
+	public void setMatchManager(IMatchManager matchManager) {
+		this.matchManager = matchManager;
+	}
+
+	public IMatchManager getMatchManager() {
+		return matchManager;
+	}
+
 	
 }

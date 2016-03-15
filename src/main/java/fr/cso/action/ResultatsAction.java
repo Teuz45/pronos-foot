@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.cso.core.CalculClassementGroupe;
-import fr.cso.core.IMatchManager;
 import fr.cso.core.IResultatManager;
 import fr.cso.model.Match;
 import fr.cso.model.Resultat;
@@ -15,19 +14,17 @@ public class ResultatsAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
 	private IResultatManager resultatManager;
-	private IMatchManager matchManager;
+//	private IMatchManager matchManager;
 	
 	private List<Resultat> listeResultats;
 	private List<ClassementEquipe> classementGroupe;
 	
 	public String listerResultats() throws Exception{
 		
-		init();
-		
 		listeResultats = resultatManager.listeResultats();
 		
 		
-		List<Match> listeMatchsParGroupe = matchManager.listeMatchsParGroupe("A");
+		List<Match> listeMatchsParGroupe = getMatchManager().listeMatchsParGroupe("A");
 		
 		List<Resultat> listeResultatGroupe = new ArrayList<>();
 		for(Match match : listeMatchsParGroupe) {
@@ -51,9 +48,9 @@ public class ResultatsAction extends AbstractAction {
 		this.listeResultats = listeResultats;
 	}
 
-	public void setMatchManager(IMatchManager matchManager) {
-		this.matchManager = matchManager;
-	}
+//	public void setMatchManager(IMatchManager matchManager) {
+//		this.matchManager = matchManager;
+//	}
 
 	public List<ClassementEquipe> getClassementGroupe() {
 		return classementGroupe;

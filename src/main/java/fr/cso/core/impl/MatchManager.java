@@ -24,6 +24,13 @@ public class MatchManager implements IMatchManager {
 		return matchDAO.listeMatchsParGroupe(codeGroupe);
 	}
 	
+	@Override
+	@Transactional(readOnly=true)
+	public Match getProchainMatch() {
+		return matchDAO.getProchainMatch();
+	}
+	
+	
 	public void setMatchDAO(IMatchDAO matchDAO) {
 		this.matchDAO = matchDAO;
 	}

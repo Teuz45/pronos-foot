@@ -17,6 +17,8 @@ public class Resultat implements Serializable {
 	@Id
 	private int idMatch;
 
+	private boolean matchJoue;
+	
 	private Integer scoreDom;
 
 	private Integer scoreExt;
@@ -51,6 +53,14 @@ public class Resultat implements Serializable {
 		this.idMatch = idMatch;
 	}
 
+	public boolean isMatchJoue() {
+		return this.matchJoue;
+	}
+	
+	public void setMatchJoue(boolean matchJoue) {
+		this.matchJoue = matchJoue;
+	}
+	
 	public Integer getScoreDom() {
 		return this.scoreDom;
 	}

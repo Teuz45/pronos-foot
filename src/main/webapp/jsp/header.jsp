@@ -23,7 +23,17 @@
 			</div>
 			<div class="competition-aside">
 				<div class="prochainEvenement">
-					<s:property value='libelleProchainEvenement' />
+					<s:if test="prochainMatch.numMatch==1">
+						Début de la compétition
+					</s:if>
+					<s:else>
+						<s:if test='prochainMatch.phase.libelle=="GROUPES"'>
+							<s:property value='prochainMatch.phase.libelle' /> <s:property value='prochainMatch.phase.groupe' /> 
+						</s:if>
+						<s:else>
+							<s:property value='prochainMatch.phase.libelle' />
+						</s:else>
+					</s:else>
 					<br/>
 					<div style="width:10%"><img src="<s:property value='prochainMatch.resultat.equipeDom.logo' />"></div>
 					<div class="cdEquipe" style="width:30%"><s:property value='prochainMatch.resultat.equipeDom.cdEquipe' /></div>
@@ -58,11 +68,11 @@
 			<div class="menu" id="menu">
 				<div class="menu-container">
 			      <ul class="menu-navbar">
-				    <li class="menu-navbar-item first-item">
-				      <a class="menu-navbar-item-link <s:if test="#currentpage == 'resultats'">menu-navbar-item-link-active</s:if>" href="#">Résultats</a>
+			      	<li class="menu-navbar-item first-item">
+				      <a class="menu-navbar-item-link" href="#">Mes pronostics</a>
 				    </li>
 				    <li class="menu-navbar-item">
-				      <a class="menu-navbar-item-link" href="#">Mes pronostics</a>
+				      <a class="menu-navbar-item-link <s:if test="#currentpage == 'resultats'">menu-navbar-item-link-active</s:if>" href="#">Résultats</a>
 				    </li>
 				    <li class="menu-navbar-item">
 				      <a class="menu-navbar-item-link" href="#">Classement</a>

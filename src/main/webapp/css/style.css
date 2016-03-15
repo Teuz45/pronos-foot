@@ -5,6 +5,11 @@
 	src: url('../font/pfbeausanspro-light-webfont.ttf'); 
 }
 
+@font-face { 
+	font-family: "LedDisplay"; 
+	src: url('../font/digital-7.ttf'); 
+} 
+
 body{
 	min-width: 1000px;
 }
@@ -66,12 +71,6 @@ body{
 	top: 20px;
 	z-index: 3;
 }
-
-@font-face { 
-	font-family: "LedDisplay"; 
-	src: url('../font/digital-7.ttf'); 
-	font-weight:400;
-} 
 
 .navigation .competition-aside .prochainEvenement {
 	color: #FFFFFF;
@@ -151,7 +150,6 @@ body{
 
 .navigation .menu .menu-container .menu-navbar .first-item {
     flex-grow: 1;
-    text-align: left;
 }
 
 .navigation .menu .menu-container .menu-navbar .menu-navbar-item {
@@ -181,7 +179,6 @@ body{
 
 .navigation .menu .menu-container .menu-navbar .last-item {
     flex-grow: 1;
-    text-align: right;
 }
 
 /* CONTENT */
@@ -226,13 +223,14 @@ body{
 }
 
 .divResultat .tabResultat .colScores {
-	font-size : 20px;
+	font-size: 25px;
 	font-weight: bold;
 	border-radius: 5px;
+	font-family: 'LedDisplay', Arial, Verdana, sans-serif;
 }
 
 .divResultat .tabResultat .colScores input {
-	width : 100%;
+	width : 90%;
 	font-size : 20px;
 	text-align: center;
 }
@@ -265,7 +263,9 @@ body{
 }
 
 .divResultat .tabResultat .victoire {
-	background-color: #98FB98;
+/* 	background-color: #61E163; */
+	background-color: rgb(198,239,206);
+	color: rgb(0,97,0);
 }
 
 .divResultat .tabResultat .nul {
@@ -273,25 +273,29 @@ body{
 }
 
 /* CLASSEMENT */
+.titreClassement {
+	color: rgb(26, 26, 26);
+	font-size: 14px;
+}
 
 .classement {
 	border-collapse: collapse;
 }
 
 .classement .title {
-	width: 30px;
+	width: 25px;
+}
+
+.classement .title-equipe {
+	width : 150px;
+}
+
+.classement .title-points {
+	width : 50px;
 }
 
 .classement .data {
 	text-align: center;
-}
-
-.classement .data-ligne-paire {
-	background-color: rgb(255, 255, 255);
-}
-
-.classement .data-ligne-impaire {
-	background-color: rgb(240, 240, 240);
 }
 
 .classement .data-points {
@@ -299,22 +303,43 @@ body{
 	font-weight: bold;
 }
 
+.classement .data-equipe {
+	text-align: left;
+	font-weight: bold;
+}
+
+.classement .data-equipe img {
+	width: 15px;
+	height: 15px;
+	margin-bottom: 3px;
+	margin-right: 5px;
+	vertical-align:middle;
+}
+
+.classement .data-ligne-paire {
+	background-color: rgb(255, 255, 255);
+}
+
+.classement .data-ligne-impaire {
+	background-color: rgb(245, 245, 245);
+}
+
 .classement td {
-	padding-top: 4px;
-	padding-bottom: 4px;
-	font-size: 15px;
-	border-bottom: 1px solid rgb(229, 229, 229)
+	font-size: 14px;
+	border-bottom: 1px solid rgb(229, 229, 229);
+	line-height: 35px;
 }
 
 .classement th {
     color: #ffffff;
     background-color: #1384b9;
-    line-height: 36px;
+    line-height: 20px;
     font-size: 13px;
     margin: 0;
     border: 0;
 }
 
-.classement .title-equipe {
-	width : 120px;
+.classement .standings-abbr {
+	cursor: help;
+	border-bottom: 1px dotted #ffffff;
 }

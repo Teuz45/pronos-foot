@@ -3,8 +3,10 @@ package fr.cso.model.bean;
 import java.math.BigDecimal;
 import java.util.Comparator;
 
+import fr.cso.model.Equipe;
+
 public class ClassementEquipe implements Comparable<ClassementEquipe> {
-	private String nomEquipe;
+	private Equipe equipe;
 	
 	private int ranking;
 	
@@ -44,17 +46,17 @@ public class ClassementEquipe implements Comparable<ClassementEquipe> {
 	    }
 	};
 	
-	public ClassementEquipe(String nomEquipe) {
+	public ClassementEquipe(Equipe equipe) {
 		super();
-		this.nomEquipe = nomEquipe;
+		this.equipe = equipe;
 	}
 
 	public int compareTo(ClassementEquipe compareClassement) {
 		return compareClassement.getNbPoints() - this.getNbPoints();
 	}
 	
-	public String getNomEquipe() {
-		return nomEquipe;
+	public Equipe getEquipe() {
+		return equipe;
 	}
 	
 	public int getRanking() {
@@ -65,8 +67,8 @@ public class ClassementEquipe implements Comparable<ClassementEquipe> {
 		this.ranking = ranking;
 	}
 
-	public void setNomEquipe(String nomEquipe) {
-		this.nomEquipe = nomEquipe;
+	public void setEquipe(Equipe equipe) {
+		this.equipe = equipe;
 	}
 
 	public int getNbPoints() {
@@ -198,7 +200,7 @@ public class ClassementEquipe implements Comparable<ClassementEquipe> {
 		
 		StringBuilder str = new StringBuilder();
 		str.append(this.getRanking() + "\t");
-		str.append(this.getNomEquipe() + "\t");
+		str.append(this.getEquipe().getNom() + "\t");
 		str.append(this.getNbPoints() + "\t");
 		str.append(this.getNbMatchsJoues() + "\t");
 		str.append(this.getNbVictoiresDom() + "\t");

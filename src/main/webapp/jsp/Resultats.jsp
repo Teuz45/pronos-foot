@@ -49,7 +49,7 @@
 											<input type="text" name="scoreDom" value="<s:property value="scoreDom"/>"/>
 										</td>
 										<td class="colSeparateur" rowspan="2">
-											-
+											<input type="submit" value="OK" />
 										</td>
 										<td class="colScores" rowspan="2">
 											<input type="text" name="scoreExt" value="<s:property value="scoreExt"/>"/>
@@ -65,18 +65,12 @@
 									<td class="colInfos"></td>
 									<td style="font-size: 11px" colspan="7"><s:property value="match.stade.nomStade" /> (<s:property value="match.stade.ville" />)</td>
 								</tr>
-								<s:if test='utilisateur.profil=="ADMIN"'>
-									<tr>
-										<td class="colInfos"></td>
-										<td style="text-align: center;" colspan="7"><input type="submit" value="OK" /></td>
-									</tr>
-								</s:if>
 							</table>
 						</div>
 					</s:iterator>
 				</div>
 				<div class="content-right">
-					<h2 class="portlet-title">Groupe A</h2>
+					<h2 class="titreClassement">Groupe A</h2>
 					<table class="classement">
 						<thead>
 							<tr>
@@ -84,22 +78,22 @@
 								<th class="title-equipe">Equipe</th>
 								<th class="title"><abbr class="standings-abbr" title="Joué(s)">J</abbr></th>
 								<th class="title"><abbr class="standings-abbr" title="Victoires">V</abbr></th>
-								<th class="title"><abbr class="standings-abbr" title="Matches nuls">N</abbr></th>
+								<th class="title"><abbr class="standings-abbr" title="Matchs nuls">N</abbr></th>
 								<th class="title"><abbr class="standings-abbr" title="Défaites">D</abbr></th>
 								<th class="title"><abbr class="standings-abbr" title="Buts pour">bp</abbr></th>
-								<th class="title"><abbr class="standings-abbr" title="Contre">bc</abbr></th>
-								<th class="title"><abbr class="standings-abbr" title="Différence de buts">+/-</abbr></th>
-								<th class="title"><abbr class="standings-abbr" title="Points">pts</abbr></th>
+								<th class="title"><abbr class="standings-abbr" title="Buts contre">bc</abbr></th>
+								<th class="title"><abbr class="standings-abbr" title="Différence de buts">diff</abbr></th>
+								<th class="title-points"><abbr class="standings-abbr" title="Points">pts</abbr></th>
 							</tr>
 						</thead>
 						<tbody>
-							<s:iterator value="classementGroupe" status="matchStatus" var="match">
-								<tr class="<s:if test="#matchStatus.index %2 == 0">data-ligne-paire</s:if><s:else>data-ligne-impaire</s:else>">
+							<s:iterator value="classementGroupe" status="classementStatus" var="classement">
+								<tr class="<s:if test="#classementStatus.index %2 == 0">data-ligne-paire</s:if><s:else>data-ligne-impaire</s:else>">
 									<td class="data">
 										<s:property value="ranking"/>
 									</td>
 									<td class="data-equipe">
-										<s:property value="nomEquipe"/>
+										<img src="<s:property value='equipe.logo' />"> <s:property value="equipe.nom"/>
 									</td>
 									<td class="data">
 										<s:property value="nbMatchsJoues"/>

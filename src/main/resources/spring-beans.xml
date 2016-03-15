@@ -7,13 +7,16 @@
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
  
- 	<bean id="helloWorld" class="fr.cso.action.HelloWorld">
+  	<bean id="abstractAction" class="fr.cso.action.AbstractAction" abstract="true">
+		<property name="matchManager" ref="matchManager" />	
+	</bean>
+ 
+ 	<bean id="helloWorld" class="fr.cso.action.HelloWorld" parent="abstractAction">
 		<property name="equipeManager" ref="equipeManager" />	
 	</bean>
 	
-	<bean id="resultatsAction" class="fr.cso.action.ResultatsAction">
+	<bean id="resultatsAction" class="fr.cso.action.ResultatsAction" parent="abstractAction">
 		<property name="resultatManager" ref="resultatManager" />	
-		<property name="matchManager" ref="matchManager" />	
 	</bean>
 	
 
@@ -51,7 +54,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/pronos" />
         <property name="username" value="root" />
-        <property name="password" value="" />
+        <property name="password" value="j14ov01" />
     </bean>
 
 	<bean id="sessionFactory"

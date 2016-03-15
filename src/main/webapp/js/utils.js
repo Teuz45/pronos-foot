@@ -5,7 +5,9 @@ $(document).ready(function () {
 
 function CountDownTimer(dt)
 {
-    var end = new Date(dt*1000);
+    var end = new Date(dt*1);
+    
+    console.log(end);
     
     var _second = 1000;
     var _minute = _second * 60;
@@ -15,24 +17,26 @@ function CountDownTimer(dt)
 
     function showRemaining() {
         var now = new Date();
-        var distance = end - now;
-        if (distance < 0) {
+        var diff = end - now;
+        if (diff < 0) {
 
             clearInterval(timer);
             // ????
-            document.getElementById(id).innerHTML = 'EXPIRED!';
+            //document.getElementById(id).innerHTML = 'EXPIRED!';
+            $(".countdown").hide();
 
             return;
         }
-        var days = Math.floor(distance / _day);
-        var hours = Math.floor((distance % _day) / _hour);
-        var minutes = Math.floor((distance % _hour) / _minute);
-        var seconds = Math.floor((distance % _minute) / _second);
+        var days = Math.floor(diff / _day);
+        var hours = Math.floor((diff % _day) / _hour);
+        var minutes = Math.floor((diff % _hour) / _minute);
+        var seconds = Math.floor((diff % _minute) / _second);
         
-        document.getElementById('countdown_jours').innerHTML = formatCentaine(days);
-        document.getElementById('countdown_heures').innerHTML = formatDizaine(hours);
-        document.getElementById('countdown_minutes').innerHTML = formatDizaine(minutes);
-        document.getElementById('countdown_secondes').innerHTML = formatDizaine(seconds);
+        $(".countdown").show();
+        $("#countdown_jours").html(formatCentaine(days));
+        $("#countdown_heures").html(formatDizaine(hours));
+        $("#countdown_minutes").html(formatDizaine(minutes));
+        $("#countdown_secondes").html(formatDizaine(seconds));
     }
 
     timer = setInterval(showRemaining, 1000);
